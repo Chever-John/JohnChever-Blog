@@ -7,6 +7,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 import Translate from "@docusaurus/core/lib/client/exports/Translate";
+import useBaseUrl from "@docusaurus/core/lib/client/exports/useBaseUrl";
 
 function HomepageHeader() {
   const context = useDocusaurusContext();
@@ -24,6 +25,15 @@ function HomepageHeader() {
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
+
+  const animatedHero = useSpring({
+    opacity: 1,
+    transform: "translateX(0)",
+    from: { opacity: 0, transform: "translateX(8em)" },
+    config: { mass: 2, tension: 260, friction: 30 },
+    delay: 600,
+  });
+
   const animatedTexts = useTrail(5, {
     from: { opacity: 0, transform: "translateY(3em)" },
     to: { opacity: 1, transform: "translateY(0)" },
@@ -59,6 +69,13 @@ export default function Home() {
         </animated.div>
         &nbsp;
 
+      </Grid>
+
+      <Grid item xs={12} lg={6} className="homeImg">
+        <animated.img
+          src={useBaseUrl("img/programming.svg")}
+          style={animatedHero}
+          />
       </Grid>
     </Grid>
       {/*<HomepageHeader />*/}

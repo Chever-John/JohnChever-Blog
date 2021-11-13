@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2b22040-5f59-4ae6-bd03-25e86bd8c547" name="Changes" comment="Docs: smart checks">
-      <change afterPath="$PROJECT_DIR$/static/img/hero.svg" afterDir="false" />
+    <list default="true" id="d2b22040-5f59-4ae6-bd03-25e86bd8c547" name="Changes" comment="Docs: fledgling website">
+      <change afterPath="$PROJECT_DIR$/static/img/mountain_changbai.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mountain_changbai.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/programming.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/authors.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog/authors.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1636775151056</updated>
       <workItem from="1636775152412" duration="3304000" />
-      <workItem from="1636791101455" duration="2299000" />
+      <workItem from="1636791101455" duration="3801000" />
     </task>
     <task id="LOCAL-00001" summary="Docs: smart check.">
       <created>1636776062315</created>
@@ -70,7 +68,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636776337200</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Docs: fledgling website">
+      <created>1636793508286</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636793508286</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +96,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Docs: smart check." />
     <MESSAGE value="Docs: smart checks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docs: smart checks" />
+    <MESSAGE value="Docs: fledgling website" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docs: fledgling website" />
   </component>
 </project>
