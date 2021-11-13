@@ -6,15 +6,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "JohnChever's blog",
-  tagline: 'Dinosaurs are yeah cool',
+  title: "CheverJohn's blog",
+  tagline: 'One day docusaurus found me, then this website appeared!',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'https://github.com/chever-john/', // Usually your GitHub org/user name.
+  projectName: 'Blog', // Usually your repo name.
 
   presets: [
     [
@@ -38,7 +38,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "JohnChever's Blog",
+        title: "CheverJohn's Blog",
         logo: {
           alt: 'My Site Logo',
           src: 'img/avatar.svg',
@@ -46,7 +46,7 @@ const config = {
         items: [
           {to: '/blog', label: 'Blog', position: 'right'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/chever-john/',
             label: 'GitHub',
             position: 'right',
           },
@@ -66,6 +66,10 @@ const config = {
                 label: 'Twitter',
                 href: 'https://twitter.com/JohnChever',
               },
+              {
+                label: 'GitHub',
+                href: 'https://github.com/chever-john/',
+              },
             ],
           },
           {
@@ -74,10 +78,6 @@ const config = {
               {
                 label: 'Blog',
                 to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/chever-john/',
               },
             ],
           },

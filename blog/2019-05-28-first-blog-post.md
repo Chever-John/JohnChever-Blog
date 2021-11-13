@@ -2,10 +2,10 @@
 slug: first-blog-post
 title: First Blog Post
 authors:
-  name: Gao Wei
-  title: Docusaurus Core Team
-  url: https://github.com/wgao19
-  image_url: https://github.com/wgao19.png
+  name: CheverJohn
+  title: a hard boy
+  url: https://github.com/chever-john/
+  image_url: http://cdn.mr8god.cn/img/landscape.jpg
 tags: [hola, docusaurus]
 ---
 
