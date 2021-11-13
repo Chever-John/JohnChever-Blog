@@ -43,7 +43,7 @@ const config = {
           alt: 'My Site Logo',
           src: 'img/avatar.svg',
         },
-        items: [:
+        items: [
           {to: '/blog', label: 'Blog', position: 'right'},
           {
             href: 'https://github.com/facebook/docusaurus',
