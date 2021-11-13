@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2b22040-5f59-4ae6-bd03-25e86bd8c547" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/2019-05-28-first-blog-post.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/2019-05-28-first-blog-post.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/2019-05-29-long-blog-post.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/2019-05-29-long-blog-post.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/2021-08-01-mdx-blog-post.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/blog/2021-08-01-mdx-blog-post.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/2021-08-26-welcome/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/2021-08-26-welcome/index.md" afterDir="false" />
+    <list default="true" id="d2b22040-5f59-4ae6-bd03-25e86bd8c547" name="Changes" comment="Docs: smart check.">
       <change beforePath="$PROJECT_DIR$/blog/authors.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog/authors.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +42,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1636775151056</updated>
-      <workItem from="1636775152412" duration="811000" />
+      <workItem from="1636775152412" duration="1168000" />
     </task>
+    <task id="LOCAL-00001" summary="Docs: smart check.">
+      <created>1636776062315</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1636776062315</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Docs: smart check." />
+    <option name="LAST_COMMIT_MESSAGE" value="Docs: smart check." />
   </component>
 </project>
