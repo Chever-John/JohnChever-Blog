@@ -6,14 +6,15 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-color-primary: #007be2;
+  --ifm-color-primary-dark: #175ebb;
+  --ifm-color-primary-darker: #06508d;
+  --ifm-color-primary-darkest: #013966;
+  --ifm-color-primary-light: #6dc8f2;
+  --ifm-color-primary-lighter: #c6ebfc;
+  --ifm-color-primary-lightest: #f3fcff;
   --ifm-code-font-size: 95%;
+
 }
 
 .docusaurus-highlight-code-line {
@@ -23,6 +24,48 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
+html {
+  --post-title-color: #313131;
+  --post-pub-date-color: #8c8c8c;
+  --divider-color: #ebebeb;
+}
+
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.hero {
+  /* height: calc(100vh - 45px); */
+  height: auto;
+  width: 100vw;
+  margin: 0;
+  background-image: linear-gradient(
+          40deg,
+          rgba(255, 255, 255, 0.8) 62%,
+          rgba(0, 132, 255, 0.1)
+  ),
+  url("/img/hero.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+
+
+.intro__name {
+  color: var(--ifm-color-primary);
+}
+
+.footer {
+  margin-top: 4em;
+}
+
+@media screen and (max-width: 1200px) {
+  .hero {
+    grid-template-columns: 1fr;
+    height: auto;
+    background-position: top;
+  }
 }
