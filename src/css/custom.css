@@ -30,8 +30,11 @@ html {
   --divider-color: #ebebeb;
 }
 
-html[data-theme='dark'] .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
+html[data-theme="dark"] {
+  --post-title-color: white;
+  --post-pub-date-color: var(--ifm-color-gray-100);
+  --divider-color: #353535;
+  --ifm-toc-border-color: #313131;
 }
 
 .hero {
@@ -53,6 +56,14 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   position: relative;
 }
 
+html[data-theme="dark"] .hero {
+  background-image: linear-gradient(
+          20deg,
+          var(--ifm-background-color) 40%,
+          rgba(18, 55, 105, 0.85)
+  ),
+  url("/img/hero.svg");
+}
 
 .intro__name {
   color: var(--ifm-color-primary);
