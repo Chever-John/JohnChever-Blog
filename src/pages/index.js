@@ -5,7 +5,7 @@ import { Typography, Grid, Button } from "@material-ui/core";
 import { useTrail, animated, useSpring } from "react-spring";
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
-import HomepageFeatures from '../components/HomepageFeatures';
+import resume from "../../static/files/profile_dual.pdf";
 import Translate from "@docusaurus/core/lib/client/exports/Translate";
 import useBaseUrl from "@docusaurus/core/lib/client/exports/useBaseUrl";
 
@@ -68,7 +68,17 @@ export default function Home() {
           </Typography>
         </animated.div>
         &nbsp;
-
+        <animated.p style={animatedTexts[3]}>
+          <Button
+            sytle-={{ textTransform: "none" }}
+            color="primary"
+            variant="outlined"
+            size="small"
+            href={resume}
+            >
+            <Translate>My Resume</Translate>
+          </Button>
+        </animated.p>
       </Grid>
 
       <Grid item xs={12} lg={6} className="homeImg">
