@@ -12,7 +12,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/landscape_ico.ico',
   organizationName: 'https://github.com/chever-john/', // Usually your GitHub org/user name.
   projectName: 'Blog', // Usually your repo name.
 

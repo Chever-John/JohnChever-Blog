@@ -46,7 +46,7 @@ export default function Home() {
   });
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
     <Grid container spacing={2} style={{ padding: "5%" }} className="hero">
