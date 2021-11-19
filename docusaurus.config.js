@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "CheverJohn's blog",
+  title: "CheverJohn's Website",
   tagline: 'One day docusaurus found me, then this website appeared!',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'http://localhost:3000/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -33,10 +33,13 @@ const config = {
       }),
     ],
   ],
-
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      gtag: {
+        trackingID: 'G-S9LZ6M643L',
+        anonymizeIP: true,
+      },
       navbar: {
         title: "CheverJohn's Blog",
         logo: {
