@@ -41,7 +41,7 @@ const config = {
         anonymizeIP: true,
       },
       navbar: {
-        title: "CheverJohn's Blog",
+        title: "CheverJohn's Website",
         logo: {
           alt: 'My Site Logo',
           src: 'img/avatar.svg',
