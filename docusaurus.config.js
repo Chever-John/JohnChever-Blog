@@ -84,6 +84,15 @@ const config = {
               },
             ],
           },
+          {
+            title: "Friends' links",
+            items: [
+              {
+                label: 'Skye Young',
+                href: 'https://blog.syis.me/',
+              }
+            ]
+          }
         ],
         copyright: `Copyright © ${new Date().getFullYear()} CheverJohn, Inc. Built with Docusaurus.`,
       },
