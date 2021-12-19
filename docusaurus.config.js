@@ -48,6 +48,7 @@ const config = {
         },
         items: [
           {to: '/blog', label: 'Blog', position: 'right'},
+          {to: '/blog/tags/', label:"Blog'sTag", position: 'right'},
           {
             href: 'https://github.com/chever-john/',
             label: 'GitHub',
