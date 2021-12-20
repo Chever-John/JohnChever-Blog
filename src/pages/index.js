@@ -5,7 +5,7 @@ import { Typography, Grid, Button } from "@material-ui/core";
 import { useTrail, animated, useSpring } from "react-spring";
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
-import resume from "../../static/files/profile_zh1.0.pdf";
+import resume from "../../static/files/CV_zh.pdf";
 import Translate from "@docusaurus/core/lib/client/exports/Translate";
 import useBaseUrl from "@docusaurus/core/lib/client/exports/useBaseUrl";
 
