@@ -44,7 +44,7 @@ const config = {
         title: "CheverJohn's Website",
         logo: {
           alt: 'My Site Logo',
-          src: 'img/avatar.svg',
+          src: 'img/landscape.jpg',
         },
         items: [
           {to: '/blog', label: 'Blog', position: 'right'},
