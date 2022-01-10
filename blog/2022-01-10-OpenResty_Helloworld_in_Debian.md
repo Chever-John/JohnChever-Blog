@@ -94,13 +94,13 @@ PS：这里边就离谱，我都跑完命令了，然后告诉我可以关闭自
 
 第一次跑通的命令是这样的 hhhh
 
-![命令行最简单Helloworld](http://cdn.mr8god.cn/img/image-20220110210916098.png)
+![命令行最简单Helloworld](/img/2022-01-10-OpenResty_Helloworld_in_Debian/命令行最简单Helloworld.png)
 
 
 
 对比一下Python的运行代码
 
-![Python与OpenResty的比较](http://cdn.mr8god.cn/img/image-20220110211256448.png)
+![Python与OpenResty的比较](/img/2022-01-10-OpenResty_Helloworld_in_Debian/Python与OpenResty的比较.png)
 
 
 
@@ -108,7 +108,7 @@ PS：这里边就离谱，我都跑完命令了，然后告诉我可以关闭自
 
 虽然好像还是阻止了进程，但是还是可以一瞥一二的。
 
-![OpenResty的本质](http://cdn.mr8god.cn/img/image-20220110212231616.png)
+![OpenResty的本质](/img/2022-01-10-OpenResty_Helloworld_in_Debian/OpenResty的本质.png)
 
 ## VSCode连接Debian-wsl
 
@@ -116,17 +116,17 @@ PS：这里边就离谱，我都跑完命令了，然后告诉我可以关闭自
 
 其实只需要VSCode安装两个插件就行了
 
-![VSCode安装两个插件](http://cdn.mr8god.cn/img/image-20220110212449822.png)
+![VSCode安装两个插件](/img/2022-01-10-OpenResty_Helloworld_in_Debian/Vscode安装两个插件.png)
 
 其中Lua插件甚至还可以给wsl上安装，MS是真的把这个wsl玩透了。
 
 然后就可以继续在Debian-wsl上创建目录，目录如下：
 
-![Debian-wsl上的目录](http://cdn.mr8god.cn/img/image-20220110212655342.png)
+![Debian-wsl上的目录](/img/2022-01-10-OpenResty_Helloworld_in_Debian/Debian-wsl上的目录.png)
 
 进而在```conf```文件夹创建```nginx.conf```
 
-![nginx.conf in conf](http://cdn.mr8god.cn/img/image-20220110212740813.png)
+![nginx.conf in conf](/img/2022-01-10-OpenResty_Helloworld_in_Debian/nginx.conf in conf.png)
 
 
 
@@ -145,7 +145,7 @@ export PATH
 openresty -p `pwd` -c conf/nginx.conf
 ```
 
-![曲折的启动OpenResty服务](http://cdn.mr8god.cn/img/image-20220110213341006.png)
+![曲折的启动OpenResty服务](static/img/2022-01-10-OpenResty_Helloworld_in_Debian/曲折的启动OpenResty.png)
 
 从这张图就可以很容易地看出来，我犯了至少两个错误
 
@@ -156,7 +156,7 @@ openresty -p `pwd` -c conf/nginx.conf
 
 然后这个时候我们的OpenResty的服务已经成功启动了，可以使用curl命令，查看结果的返回：
 
-![result的返回](http://cdn.mr8god.cn/img/image-20220110213845023.png)
+![result的返回](/img/2022-01-10-OpenResty_Helloworld_in_Debian/result的返回.png)
 
 （当然前提是我使用```openresty -p `pwd` -c conf/nginx.conf```命令启动了OpenResty服务）
 
