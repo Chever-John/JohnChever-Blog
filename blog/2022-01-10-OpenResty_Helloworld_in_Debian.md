@@ -161,3 +161,5 @@ openresty -p `pwd` -c conf/nginx.conf
 （当然前提是我使用```openresty -p `pwd` -c conf/nginx.conf```命令启动了OpenResty服务）
 
 好嘞，第一个真正的OpenResty程序完成咯。
+
+Inspired by [chun's docs](https://openresty.org/cn/getting-started.html)（看官方文档果然yyds鸭）
