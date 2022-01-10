@@ -145,7 +145,7 @@ export PATH
 openresty -p `pwd` -c conf/nginx.conf
 ```
 
-![曲折的启动OpenResty服务](static/img/2022-01-10-OpenResty_Helloworld_in_Debian/曲折的启动OpenResty.png)
+![曲折的启动OpenResty服务](/img/2022-01-10-OpenResty_Helloworld_in_Debian/曲折的启动OpenResty.png)
 
 从这张图就可以很容易地看出来，我犯了至少两个错误
 
