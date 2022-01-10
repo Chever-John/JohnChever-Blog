@@ -65,12 +65,12 @@ tags: [Health_Life]
 
 最好的辨别方式就是看配料表和营养成分表，排名越靠前的在食品中占比越大，比如有白砂糖、果葡糖浆、植脂末氢化植物油、氢化脂肪、精炼植物油、人造黄油、植物黄油、人造奶油、植物奶油、麦淇淋（马淇淋）、奶精、代可可脂等成分  我们就不可以食用了
 
-![碳水计算公式](http://cdn.mr8god.cn/img/%E7%A2%B3%E6%B0%B4%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.jpg)
+![碳水计算公式](/img/2022-01-07-Have_A_Health_life/碳水计算公式.jpg)
 
 
 
-![碳水蛋白质计算公式](http://cdn.mr8god.cn/img/%E7%A2%B3%E6%B0%B4%E8%9B%8B%E7%99%BD%E8%B4%A8%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.png)
+![碳水蛋白质计算公式](/img/2022-01-07-Have_A_Health_life/碳水蛋白质计算公式.png)
 
 
 
-![BMR](http://cdn.mr8god.cn/img/BMR.png)
+![BMR](/img/2022-01-07-Have_A_Health_life/BMR.png)
