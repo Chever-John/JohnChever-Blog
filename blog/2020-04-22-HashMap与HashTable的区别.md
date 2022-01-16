@@ -2,7 +2,7 @@
 slug: HashMap与HashTable的区别
 title: HashMap与HashTable的区别
 authors: CheverJohn
-tags: [java]
+tags: [Java]
 ---
 # HashMap与HashTable的区别
 

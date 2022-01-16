@@ -2,7 +2,7 @@
 slug: Apache开源理念
 title: Apache开源理念
 authors: CheverJohn
-tags: [开源]
+tags: [Open-Source]
 ---
 # Apache以及Apache开源理念
 

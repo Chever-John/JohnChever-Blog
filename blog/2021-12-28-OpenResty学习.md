@@ -2,7 +2,7 @@
 slug: OpenResty学习
 title: OpenResty学习
 authors: CheverJohn
-tags: [网关]
+tags: [Gateway, OpenResty]
 ---
 # OpenResty学习
 

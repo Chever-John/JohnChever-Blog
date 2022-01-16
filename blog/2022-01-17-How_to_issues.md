@@ -2,7 +2,7 @@
 slug: 如何有效地报告Bug
 title: 如何有效地报告Bug
 authors: CheverJohn
-tags: [开源, Open-Source]
+tags: [Open-Source]
 ---
 # 如何有效地报告 Bug
 

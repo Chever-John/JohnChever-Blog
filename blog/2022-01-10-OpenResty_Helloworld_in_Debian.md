@@ -2,7 +2,7 @@
 slug: OpenResty_Helloworld
 title: OpenResty_Helloworld
 authors: CheverJohn
-tags: [网关, OpenResty, Debian, Lua, VSCode]
+tags: [Gateway, OpenResty, Debian, Lua, VSCode]
 ---
 # OpenResty: Helloworld
 
