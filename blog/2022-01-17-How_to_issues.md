@@ -144,8 +144,4 @@ _声明：_我从没有真的看见过鼬和羚羊，我的比喻可能不恰当
 
 本文属于 [OPL（OpenContent License）](https://www.opencontent.org/)，请在复制和使用本文时自觉遵守 OPL。
 
-对本文的任何意见和批评请发送至：
 
-英文版：[anakin@pobox.com](mailto:anakin@pobox.com)
-
-中文版：[dasn@users.sf.net](dasn@users.sf.net)
