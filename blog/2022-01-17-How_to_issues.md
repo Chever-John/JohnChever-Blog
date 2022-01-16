@@ -12,7 +12,6 @@ tags: [开源, Open-Source]
 
 翻译：Dasn
 
-[ [English](bugs.html) | [Português](bugs-br.html) | **简体中文** | [Česky](bugs-cz.html) | [Dansk](bugs-da.html) | [Deutsch](bugs-de.html) | [Español](bugs-es.html) | [Français](bugs-fr.html) | [Magyar](bugs-hu.html) | [Italiano](bugs-it.html) | [日本語](bugs-jp.html) | [Nederlands](bugs-nl.html) | [Polski](bugs-pl.html) | [Русский](bugs-ru.html) | [繁體中文](bugs-tw.html) ]
 
 ## 引言
 
