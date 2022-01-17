@@ -1,11 +1,11 @@
 ---
-slug: 如何有效地报告Bug
-title: 如何有效地报告Bug
+slug: 【APISIX】问题解决帖子
+title: 【APISIX】问题解决帖子
 authors: CheverJohn
 tags: [ProblemSolved, APISIX, Centos7, Linux]
 ---
 # 问题解决帖子
-
+建议搭配这篇文章阅读：https://guoqi.me/2022/01/07/2022-01-07/
 ## 问题一：
 
 ![LUAROCKS_1](/img/2022-01-17-Solved_Problems/1LUAROCKS遇到问题.png)
