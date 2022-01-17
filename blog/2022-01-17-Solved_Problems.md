@@ -8,7 +8,7 @@ tags: [ProblemSolved, APISIX, Centos7, Linux]
 
 ## 问题一：
 
-![image-20220117220827751](upload\image-20220117220827751.png)
+![LUAROCKS_1](/img/2022-01-17-Solved_Problems/1LUAROCKS遇到问题.png)
 
 ```shell
 [root@MiWiFi-R4CM-srv apisix-2.10.3]# LUAROCKS_SERVER=https://luarocks.cn make deps
@@ -35,7 +35,7 @@ curl https://raw.githubusercontent.com/apache/apisix/master/utils/linux-install-
 
 当运行了上面的命令后，又出现新的问题，看来是治标不治本啊
 
-![image-20220117221146622](upload\image-20220117221146622.png)
+![Solved_crul_by_installing_sth](/img/2022-01-17-Solved_Problems/Solved_crul_by_installing_sth.png)
 
 ```shell
 [root@MiWiFi-R4CM-srv apisix-2.10.3]# curl https://raw.githubusercontent.com/apache/apisix/master/utils/linux-install-luarocks.sh -sL | bash -
@@ -107,7 +107,7 @@ sudo yum install wget sudo unzip
 
 发现还有问题
 
-![image-20220117221428735](upload\image-20220117221428735.png)
+![install_gcc](/img/2022-01-17-Solved_Problems/install_gcc.png)
 
 ### 解决方法：
 
@@ -230,7 +230,7 @@ Dependency Updated:
 Complete!
 ```
 
-![image-20220117221653452](upload\image-20220117221653452.png)
+![Complete_by_install_gcc](/img/2022-01-17-Solved_Problems/Complete_by_install_gcc.png)
 
 ## 问题四（搁浅中......）：
 
@@ -244,7 +244,7 @@ Complete!
 
 爆出问题
 
-![image-20220117221845538](upload\image-20220117221845538.png)
+![solve](/img/2022-01-17-Solved_Problems/solve.png)
 
 分析问题：
 
@@ -262,7 +262,7 @@ make: *** [deps] Error 1
 
 很明显就是没有安装配置好git嘛
 
-![image-20220117222208512](upload\image-20220117222208512.png)
+![config_git](/img/2022-01-17-Solved_Problems/Config_git.png)
 
 ```shell
 lua-resty-dns-client 5.2.0-1 depends on lua >= 5.1, < 5.4 (5.1-1 provided by VM)
@@ -346,9 +346,9 @@ id_rsa  id_rsa.pub  known_hosts
 
 还是出现了问题
 
-![image-20220117222823417](upload\image-20220117222823417.png)
+![maybe_git_proxy](/img/2022-01-17-Solved_Problems/maybe_need_gitProxy.png)
 
-
+**怀疑是git代理的问题！！！**
 
 这边开始暂时不搞apisix中的LUAROCKS了，开始按照官网的[需求准备](https://apisix.apache.org/zh/docs/apisix/2.10/install-dependencies#:~:text=systemctl%20disable%20openresty%E3%80%82-,CentOS%207,-%23)。
 
@@ -360,7 +360,7 @@ id_rsa  id_rsa.pub  known_hosts
 
 如果使用wget的话，会出现一个
 
-![image-20220117222919420](upload\image-20220117222919420.png)
+![just_yum_update](/img/2022-01-17-Solved_Problems/just_yum_update.png)
 
 遇到```Unable to establish SSL connection```的报错
 
@@ -374,7 +374,7 @@ id_rsa  id_rsa.pub  known_hosts
 
 ### 成功结束的样子
 
-![image-20220117223156925](upload\image-20220117223156925.png)
+![finish](/img/2022-01-17-Solved_Problems/finish.png)
 
 ## 问题六：继续回到问题四
 
@@ -394,7 +394,7 @@ make: *** [deps] Error 1
 
 ## 完成etcd的安装
 
-![](http://cdn.mr8god.cn/img/20220117232229.png)
+![finish_etcd](/img/2022-01-17-Solved_Problems/finish_etcd.png)
 
 这边根据[链接](https://apisix.apache.org/zh/docs/apisix/2.10/install-dependencies#:~:text=CentOS%207%23-,%23%20%E5%AE%89%E8%A3%85%20etcd,-wget%20https%3A//github)讲的东西从而进行```etcd```的安装。
 
