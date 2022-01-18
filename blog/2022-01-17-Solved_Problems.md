@@ -1,11 +1,50 @@
 ---
-slug: 【APISIX】问题解决帖子
-title: 【APISIX】问题解决帖子
+slug: APISIX_LTS版本在Centos7系统上的安装与采坑
+title: APISIX_LTS版本在Centos7系统上的安装与采坑
 authors: CheverJohn
 tags: [ProblemSolved, APISIX, Centos7, Linux]
 ---
-# 问题解决帖子
-建议搭配这篇文章阅读：https://guoqi.me/2022/01/07/2022-01-07/
+# APISIX_LTS版本在Centos7系统上的安装与采坑
+
+本篇博客第一部分受到了这篇[博文](https://guoqi.me/2022/01/07/2022-01-07/)的启发。
+
+## TL; DR
+
+## 将结论写在前头
+
+事实上，为什么我们很多人在接触一个新的项目时候会遇到各种各样的坑呢？
+
+根据这一次的经历来看，其中的主要原因还是在于**本地部署环境的不完备**。本次踩坑经历，其实问题就是在git啦、gcc啦等之类看似很常见的东西，实际并没有配置好，然后咱们的项目文档书写者呢，默认了你已经完全配置好这些基本的东西了。唉，但是谁能想到大多数人都会是在虚拟机、wsl、docker上配置，看来docker其实更具有实用性，可以当做乐高组件一样，什么时候想用哪几个，直接拼凑起来，就是一个了，不扯远了。
+
+这边先说清楚成功部署APISIX项目，系统需要具备的最基本的东西：
+
+- git的安装
+  - 与Github进行ssh连接得做好
+  - git 代理得做好
+- 本地的ssh公钥密钥得有（具体查看.ssh文件夹）
+- centos7应该安装的基本库
+  - wget
+  - unzip
+  - git
+  - gcc
+  - yum update(**重要！！！**)
+
+
+
+
+
+## 第一部分：安装
+
+### 安装APISIX运行环境依赖
+
+基本方法内容来自于[官方文档](https://apisix.apache.org/zh/docs/apisix/2.10/how-to-build#:~:text=%E5%BB%BA%20Apache%20APISIX-,%E6%AD%A5%E9%AA%A41%EF%BC%9A%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96,-%23);
+
+
+
+
+
+## 第二部分：踩坑
+
 ## 问题一：
 
 ![LUAROCKS_1](/img/2022-01-17-Solved_Problems/1LUAROCKS遇到问题.png)
@@ -398,3 +437,18 @@ make: *** [deps] Error 1
 
 这边根据[链接](https://apisix.apache.org/zh/docs/apisix/2.10/install-dependencies#:~:text=CentOS%207%23-,%23%20%E5%AE%89%E8%A3%85%20etcd,-wget%20https%3A//github)讲的东西从而进行```etcd```的安装。
 
+## All Done
+
+上一张证明自己All Done的截图照片
+
+![All-Done-Solved_Problems](http://cdn.mr8god.cn/img/20220118130202.png)
+
+
+
+试试证明确实使用git proxy代理好，一下子就能解决所有问题了。
+
+![git_proxy](/img/2022-01-17-Solved_Problems/git_proxy.png)
+
+列出一些算是对我有所帮助的链接地址吧
+> https://www.mihu.live/archives/208/
+> https://zhuanlan.zhihu.com/p/120038973
