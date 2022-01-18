@@ -441,7 +441,7 @@ make: *** [deps] Error 1
 
 上一张证明自己All Done的截图照片
 
-![All-Done-Solved_Problems](http://cdn.mr8god.cn/img/20220118130202.png)
+![All-Done-Solved_Problems](/img/2022-01-17-Solved_Problems/All_Done-Solved_Problems.png)
 
 
 
