@@ -455,3 +455,7 @@ make: *** [deps] Error 1
 
 
 # 晚上再来把文字搞好看一点
+
+![](http://cdn.mr8god.cn/img/20220118164506.png)
+
+请忽略的etcd文件夹目录，刚刚运行起etcd了。so就急匆匆curl咯，根据这处[链接](https://apisix.apache.org/zh/docs/apisix/2.10/getting-started#:~:text=%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%EF%BC%8C%E5%9C%A8%E8%BF%90%E8%A1%8C%20Docker%20%E7%9A%84%E5%AE%BF%E4%B8%BB%E6%9C%BA%E4%B8%8A%E6%89%A7%E8%A1%8Ccurl%E5%91%BD%E4%BB%A4%E8%AE%BF%E9%97%AE%20Admin%20API%EF%BC%8C%E6%A0%B9%E6%8D%AE%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E5%88%A4%E6%96%AD%20Apache%20APISIX%20%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E5%90%AF%E5%8A%A8%E3%80%82)及其提供的命令和结果，得以判断咱们的Apache APISIX是否已经成功启动。
