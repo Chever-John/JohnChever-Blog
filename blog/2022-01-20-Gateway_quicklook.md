@@ -1,6 +1,6 @@
 ---
-slug: 对于网关(Gateway)的简单了解
-title: 对于网关(Gateway)的简单了解
+slug: 对于网关Gateway的简单了解
+title: 对于网关Gateway的简单了解
 authors: CheverJohn
 tags: [APISIX, 科普向文章, Gateway]
 ---
