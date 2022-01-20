@@ -32,7 +32,9 @@ Protocol  Buffers是一种独立于语言和平台，可扩展的序列化结构
 
 #### Protocol Buffer特点
 
-[comment]: <> (![PB特点]&#40;http://cdn.mr8god.cn/img/image-20220120020259936.png&#41;)
+![PB特点](/img/2022-01-20-grpc_and_apisix/feat_of_grpc_and_apisix.png)
+
+注：图片地址转自[链接](https://juejin.cn/post/6844903605409955848)
 
 github地址：https://github.com/protocolbuffers/protobuf
 
@@ -50,19 +52,19 @@ github地址：https://github.com/protocolbuffers/protobuf
 
 ##### 首先安装
 
-[comment]: <> (![image-20220120020712260]&#40;upload\image-20220120020712260.png&#41;)
+![首次安装](/img/2022-01-20-grpc_and_apisix/first_install.png)
 
 ##### 构建Protocol Buffer消息对象模型
 
-[comment]: <> (![image-20220120020747127]&#40;upload\image-20220120020747127.png&#41;)
+![image-20220120020747127](/img/2022-01-20-grpc_and_apisix/build_message_model_PB.png)
 
 
 
 ##### 具体应用到平台
 
-[comment]: <> (![image-20220120020926711]&#40;upload\image-20220120020926711.png&#41;)
+![具体应用到平台一](/img/2022-01-20-grpc_and_apisix/apply_to_platform.png)
+![具体应用到平台二](/img/2022-01-20-grpc_and_apisix/apply_to_platform2.png)
 
-[comment]: <> (![image-20220120020950647]&#40;upload\image-20220120020950647.png&#41;)
 
 即，在 **传输数据量较大**的需求场景下，`Protocol Buffer`比`XML、Json` 更小、更快、使用 & 维护更简单！
 
