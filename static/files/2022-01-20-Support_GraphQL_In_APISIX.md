@@ -49,14 +49,36 @@ Apache-APISIX是一个动态、实时、高性能的API网关。并且APISIX还�
 
 
 
-## 如何衔接（提一提插件的实现，简单提提radix tree，唯一可以**show code**的地方）
+## GraphQL在APISIX中的应用
+
+### 原理
+
+![](http://cdn.mr8god.cn/img/网关中支持GraphQL蓝色主题.png)
+
+1. 终端上游设备向APISIX发起请求
+2. APISIX根据已经配置好的内容筛选一部分内容；
+3. APISIX将已筛选好的内容进一步送到GraphQL；
+4. GraphQL对请求进行匹配操作；
+5. 匹配成功即进行正常的服务请求，失败则返回服务器错误。
+
+
+
+### 具体配置
+
+APISIX目前支持通过GraphQL的一些属性过滤路由，目前支持：
+
+- graphql_operation
+- graphql_name
+- graphql_root_fields
 
 从技术上来讲怎么做，这个插件怎么绑定
 GraphQL本来就是一个查询语言，把查询语言应用到请求里，主要是来进行匹配路由的工作。主要没有上游服务，上游服务就是任由服务，只要1980即可。点应该聚焦在APISIX中GraphQL是怎么实现的。
-院生：只要说这个东西实在路由上配置的，而路由上的实现是由radix tree实现的。不要往里面展开。科普主要是对GraphQL感兴趣的人，不是对APISIX技术细节感兴趣的人。
+院生：只要说这个东西实在路由上配置的，而路由上的实现是由radix tree实现的。不要往里面展开。
 技术科普类主要针对的是场景，**为什么要在网关上支持GraphQL，为什么要在APISIX上支持GraphQL。**
 
-## 实现效果
+## 场景举例
+
+### APISIX限速插件进一步提高请求性能
 
 限速插件+GraphQL。通过限速来对GraphQL进行一个保护。
 
@@ -69,6 +91,8 @@ GraphQL在APISIX主要是做一种路由匹配，跟radixtree配合更多一些
 可以理解为路由的指纹
 
 网关对下游是可以进行限流限速，对上游  两种控制。
+
+
 
 
 
