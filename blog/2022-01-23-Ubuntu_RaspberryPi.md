@@ -17,6 +17,7 @@ tags: [ProblemSolved, Ubuntu, RaspberryPi]
 ![树莓派安装界面安装ubuntu](/img/2022-01-23-Ubuntu_RaspberryPi/1.png)
 <center>图1. 树莓派安装界面安装Ubuntu中</center>
 
+
 ## 配置
 
 等这个界面安装成功，**先不要急插入树莓派！！！**我们先配置一些参数。打开`资源管理器`，找到启动盘`system-boot(F:)`
@@ -24,10 +25,12 @@ tags: [ProblemSolved, Ubuntu, RaspberryPi]
 ![Ubuntu启动盘的位置](/img/2022-01-23-Ubuntu_RaspberryPi/2.png)
 <center>图2. 资源管理器里Ubuntu启动盘的位置</center>
 
+
 然后打开`system-boot(F:)`，我们可以看到如下图所示的文件夹列表
 
 ![两个配置文件位置](/img/2022-01-23-Ubuntu_RaspberryPi/3.png)
 <center>图3. 两个配置文件的具体位置</center>
+
 我们需要注意的是`config.txt`和`network-config`这两个文件，第一个可以用来调整我树莓派连接7寸显示屏的分辨率参数。第二个文件用来配置树莓派ubuntu连WiFi的能力。
 
 ### 连接网络
@@ -37,13 +40,14 @@ tags: [ProblemSolved, Ubuntu, RaspberryPi]
 我们只需要将文件中一些注释解除就可以了。
 
 ![网络配置文件](/img/2022-01-23-Ubuntu_RaspberryPi/4.png)
-
 <center>图4.上图是文件原先的样子</center>
+
 
 下面开始正式配置，可以看到其中`TP-LINK_A826`即我要连接的`WiFi SSID`。`password`自然就是该wifi的密码啦。
 
 ![网络配置详情](/img/2022-01-23-Ubuntu_RaspberryPi/5.png)
 <center>图5. 网络配置文件最初始的样子</center>
+
 
 这边有一个小提示，当我们修改完配置文件后，启动树莓派还是会遇到无法正常联网的情况，那这个时候只需要重启即可，这一块应该是有某些配置文件没有启动，期待有时间的时候，我可以去研究研究看看。
 
@@ -66,11 +70,12 @@ hdmi_mode=4
 ```
 
 ![6](/img/2022-01-23-Ubuntu_RaspberryPi/6.png)
-
 <center>图6. 添加完配置信息之后的config.txt</center>
+
 
 ![7](/img/2022-01-23-Ubuntu_RaspberryPi/7.jpg)
 <center>图7. 是我最终成功启动树莓派Ubuntu的样子</center>
+
 
 ## root用户
 
@@ -83,6 +88,7 @@ hdmi_mode=4
 
 ![8](/img/2022-01-23-Ubuntu_RaspberryPi/8.jpg)
 <center>图8. 发现密码不对劲，怎么都无法正常登录</center>
+
 那我们的root账号密码该怎么设立呢？
 其实只需要我们使用ubuntu账号修改密码即可
 ```shell
@@ -92,7 +98,6 @@ sudo passwd root
 
 ![9](/img/2022-01-23-Ubuntu_RaspberryPi/9.jpg)
 <center>图9. 按照方法解决了问题</center>
-
 
 
 ## 大功告成！
