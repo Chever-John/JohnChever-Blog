@@ -99,7 +99,14 @@ sudo passwd root
 ![9](/img/2022-01-23-Ubuntu_RaspberryPi/9.jpg)
 <center>图9. 按照方法解决了问题</center>
 
+## 登录之后配置镜像源
 
+这边需要注意的是，我们是arm架构的ubuntu系统，要在清华源上选择arm架构的镜像源，切记。
+
+![10清华镜像源](/img/2022-01-23-Ubuntu_RaspberryPi/10.png)
+<center>图10. 根据清华源官网上arm版本配置镜像源</center>
+
+配置镜像源的详细过程就不用多说了，百度一下你就知道。
 ## 大功告成！
 
 以上便是在树莓派（RaspberryPi4）中第一次安装ubuntu20.04.3版本的一系列操作。
