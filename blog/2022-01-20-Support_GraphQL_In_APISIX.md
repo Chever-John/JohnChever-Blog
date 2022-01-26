@@ -4,79 +4,150 @@ title: Support GraphQL In APISIX
 authors: CheverJohn
 tags: [APISIX, GraphQL,科普向文章]
 ---
-# Support GraphQL In APISIX
+**Support GraphQL In Apache** **APISIX****(Version2.0)**
 
-## 背景
+## **背景**
 
-GraphQL 是一个开源的、面向API二创造出来的数据查询操作语言以及相应的运行环境。最初由Facebook于2012年内部开发，2015年公开发布。2018年11月7日，Facebook将GraphQL项目转移到新成立的GraphQL基金会。
+GraphQL 是一个开源的、面向API而创造出来的数据查询操作语言以及相应的运行环境。最初由Facebook于2012年内部开发，2015年公开发布。2018年11月7日，Facebook将GraphQL项目转移到新成立的GraphQL基金会。
 
-你其实可以把它类比为SQL查询语句来理解。GraphQL对API中的数据提供了一套易于理解的完整描述，使得客户端能够通过自定义的描述来准确获得其所需要的数据。同时这也让API能够更加容易地随着时间推移而游刃有余，避免成为一个让人望而生畏的复杂接口。
+你其实可以把它类比为SQL查询语句来理解。GraphQL对API中的数据提供了一套易于理解的完整描述。客户端能够通过自定义的描述来准确获得其所需要的数据。同时这也让API能够从容面对日益复杂的接口发展，并避免最终成为一个令人望而生畏的复杂接口。
 
 [Apache APISIX](https://apisix.apache.org/) 是 Apache 软件基金会的顶级开源项目，也是当前最活跃的开源网关项目。作为一个动态、实时、高性能的开源 API 网关，Apache APISIX 提供了负载均衡、动态上游、灰度发布、服务熔断、身份认证、可观测性等丰富的流量管理功能。
 
-## APISIX和GraphQL
+## **APISIX和GraphQL的联系**
 
-从概念上来看，APISIX是一个网关，GraphQL是一种“SQL语言”。两者所存在的领域相差实在够远，但是却又因为在如今这个大数据大流量年代，恰好能够融合在一起，这实在是一件很有趣的事情。我们接下来就主要开始聊一下这两项技术的结合。
+从概念上来看，Apache APISIX 是一个网关，GraphQL是一种“SQL语言”。两者所存在的领域相差实在够远，却又因为共存于如今这个大数据大流量年代，可以互相取长补短，恰好融合在一起，这实在是一件很有趣的事情。我们接下来就主要开始聊一下这两项技术的结合。
 
-在正式开始关于APISIX和GraphQL的讨论前，我们不妨试问一下自己两个问题，问题如下两个标题。
+首先我们来设立一个实际应用场景——微服务架构，并在此场景下讨论这个话题。毕竟如果在不添加任何场景的前提条件下讨论问题，就好比“空中楼阁”，纯属脱离实际的空想。
 
-### 为什么APISIX上要支持GraphQL？
+#### 实际场景中遇到的问题
 
-GraphQL对APISIX来说，本质上就是一种对上游路由的过滤方法。事实上APISIX拥有不止一种过滤路由的方法，还有RadixTree这一性能的基石。那么APISIX必须支持GraphQL的理由是什么呢？很明显GraphQL具有其自身独特的优点。
+在项目开展到后期的时候，往往会出现业务复杂化、团队复杂化的情况，微服务架构在当下已经成为解决这类情况的常见解决方案。从整体上来看，微服务架构中暴露的GraphQL接口设计方案大体应该有两种：分散式接口设计和集中式接口设计。
 
-当谈起API设计的时候，人们首先会想到REST API，这个API的设计思想在提出的时候是具有革命性的，并且也适时地成为了许多客户端应用程序的绝佳选择。可是随着API设计越来越复杂，并且越来越多地依赖数据驱动，REST API遇到了以下问题：
+分散式接口设计中，每一个微服务对外暴露不同的端点，分别对外界提供服务。在这种场景下，流量的路由是根据用户请求的不同服务进行分发的，也就是我们会有以下的一些GraphQL API服务：
 
-- 当设计的API接口足够多以及日益增长的请求数量，REST的数据加载方式不再满足需求；
-- 当项目进展到后期遇到业务升级的时候，不能够很好地处理旧接口以及旧字段；
+```Plain%20Text
+https://apisix.apache.org/posts/api/graphql
+https://apisix.apache.org/register/api/graphql
+https://apisix.apache.org/subscriptions/api/graphql
+```
 
-而GraphQL正是为了解决这一系列REST本身设计导致的缺点而出现的。
+当客户端同时需要多个后端资源的时候，需要分别请求不同服务上的资源，于是我们就被迫拥有了大量的请求，自然性能上会遇到很大的瓶颈。
 
-GraphQL能够根据自己的需求只请求需要的字段，通过选择感兴趣的查询字段来减少请求次数，避免信息冗余，最终实现大幅提高效率。相比较于REST来说可以支撑更多的请求数量。
+集中式接口设计中，所有的微服务对外共同暴露一个端点。这种路由方式就不能用传统的nginx来做了，因为在nginx看来整个请求其实只有一个URL以及一些参数，只有解析请求参数中的查询信息才能够知道客户端到底访问了哪些资源。
 
-GraphQL的文档和API修改是同步进行的，其文档和代码联系紧密。GraphQL的代码修改，哪怕是一个字段、一次查询都会出发文档的自动更新。相比较于REST提供了好几个版本的API，GraphQL一直都是最新的。避免出现接口发生变更，但用户始终不更新，导致功能无法正常使用的问题。
+#### 提出解决方案
 
-当然GraphQL远不止上述几点，其身份验证、强类型、生态等都是适应时代的优秀能力，更多优点可以阅读这篇[文章](https://www.apollographql.com/why-graphql/)。
+Apache APISIX作为GraphQL对外的“门户”，GraphQL作为Apache APISIX的一种路由匹配规则。即是Apache APISIX为GraphQL提出的一种解决方案，在进一步阐述之前，我们先深一步了解Apache APISIX。
 
-### 为什么GraphQL需要APISIX呢？
+Apache APISIX是一个高性能网关。其支持添加各种插件，进而实现更多实用的功能，比如流量限速、负载均衡、动态上游、金丝雀发布、熔断、认证等等。总地来说，Apache APISIX做到了一个网关该做好的事情，且在这些事情上做到了最好，甚至可以说是做了超乎一个网关该做的事情——当然我是指有益用户的方向，如可观测性。
 
-首先我们得再细致了解一下APISIX，知己知彼方能百战百胜。
+Apache APISIX通过[graphql-lua](https://github.com/bjornbytes/graphql-lua)库（对GraphQL官方解析的lua语言实现库）实现对GraphQL的支持。携带GraphQL语法的流量一开始先进入到Apache APISIX，然后流量会先交由GraphQL解析库进行匹配，匹配成功Apache APISIX放行流量，并交由Apache APISIX其他部分进一步处理，举个例子，Apache APISIX如果已经安装了限速插件的话，流量便会继续交由限速插件处理。如果匹配失败的话，Apache APISIX直接拒绝请求。
 
-Apache-APISIX是一个动态、实时、高性能的API网关。并且APISIX还提供了丰富的流量管理能力，比如负载均衡、动态上游、金丝雀发布、熔断、认证等等。APISIX实现了一个网关该做好的事情，且在这些事情上做到了最好，甚至多做了很多实用性的能力。
+总的来说，Apache APISIX搭配GraphQL的方案，充分利用GraphQL搜索优势的同时也能拥有Apache APISIX作为网关所具备的安全稳定性，是一件两全其美的事情。
 
-由网关方面来看，GraphQL就稍显不够用了。
+#### 小结
 
-### APISIX+GraphQL=共赢
+GraphQL本身是具有时代意义的一项技术，但面对当前复杂的网络开发环境，强强联手才能打造更高效有力的产品。我们应当利用好GraphQL和Apache APISIX两者的优势，去应对更具有挑战性的工作。比如，在GraphQL实现较为困难的一些功能比如说认证与授权，将其转移到Apache APISIX这边，只需搭配Apache APISIX相关插件即可实现，问题轻松解决。
 
-此外APISIX作为网关，一套系统的门户位置，还能帮助GraphQL的性能实现更进一步的提升。APISIX支持的种种插件，可以适应不同的场景。并且APISIX可扩展的特性，意味着无限的可能性。
+## **GraphQL在APISIX中的应用**
 
-举个例子，APISIX可以通过限速插件，对流量进一步筛选，最后抵达GraphQL。这样的方案很明显可以进一步提高GraphQL的性能。
+### **原理**
 
+![原理图](/img/2022-01-20-Support_GraphQL_In_APISIX/1.png)
 
-
-## 如何衔接（提一提插件的实现，简单提提radix tree，唯一可以**show code**的地方）
-
-从技术上来讲怎么做，这个插件怎么绑定
-GraphQL本来就是一个查询语言，把查询语言应用到请求里，主要是来进行匹配路由的工作。主要没有上游服务，上游服务就是任由服务，只要1980即可。点应该聚焦在APISIX中GraphQL是怎么实现的。
-院生：只要说这个东西实在路由上配置的，而路由上的实现是由radix tree实现的。不要往里面展开。科普主要是对GraphQL感兴趣的人，不是对APISIX技术细节感兴趣的人。
-技术科普类主要针对的是场景，**为什么要在网关上支持GraphQL，为什么要在APISIX上支持GraphQL。**
-
-## 实现效果
-
-限速插件+GraphQL。通过限速来对GraphQL进行一个保护。
-
-具体限流限速到具体，
-
-GraphQL在APISIX主要是做一种路由匹配，跟radixtree配合更多一些
-
-对于用户提供的价值，可以用不同的field，有不同的行为，不同的限流限速，不同的上游。
-
-可以理解为路由的指纹
-
-网关对下游是可以进行限流限速，对上游  两种控制。
+![第二章原理图](/img/2022-01-20-Support_GraphQL_In_APISIX/2.png)
 
 
 
-另外一个场景，用户部署了两个GraphQL server，
+1. 终端向APISIX发起带有GraphQL语句的请求；
+2. Apache APISIX解析GraphQL语句得到请求；
+3. Apache APISIX对请求进行匹配操作；
+4. 匹配成功，Apache APISIX将继续转发请求，失败，将立刻终止请求。
+
+### **具体配置**
+
+Apache APISIX目前支持通过GraphQL的一些属性过滤路由，目前支持：
+
+- graphql_operation
+
+- graphql_name
+
+- graphql_root_fields
+
+例如，像这样的GraphQL语句：
+
+```Nginx
+query getRepo {
+    owner {
+        name
+    }
+    repo {
+        created
+    }
+}
+```
+
+- `graphql_operation` 对应 `query`
+
+- `graphql_name` 对应 `getRepo`，
+
+- `graphql_root_fields` 对应 `["owner", "repo"]`
+
+我们可以通过以下示例为Apache APISIX设置一条路由来验证GraphQL的匹配能力：
+
+```Shell
+$ curl http://127.0.0.1:9080/apisix/admin/routes/1 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' -X PUT -i -d '
+{
+    "methods": ["POST"],
+    "uri": "/_graphql",
+    "vars": [
+        ["graphql_operation", "==", "query"],
+        ["graphql_name", "==", "getRepo"],
+        ["graphql_root_fields", "has", "owner"]
+    ],
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+            "127.0.0.1:4000": 1
+        }
+    }
+}'
+```
+
+接下来使用带有GraphQL语句的请求去访问：
+
+```Shell
+curl -X POST http://127.0.0.1:9080/graphql -d '
+query getRepo {
+    owner {
+        name
+    }
+    repo {
+        created
+    }
+}'
+```
+
+如果匹配成功，则Apache APISIX继续进行请求转发。
+
+```Apache
+HTTP/1.1 200 OK
+```
+
+反之，便终止请求。
+
+
+
+## **场景举例**
+
+在Apache APISIX插件生态圈里，有各式各样的插件可以选择，以应对不同的场景。我们这边选取常用的限速插件来构建一个实际应用场景。
+
+### **搭配限流限速插件，提高请求性能**
+
+目前Apache APISIX搭配GraphQL的方案，能够使两者发挥自己的长处。如若搭配上限流限速插件将会实现对流量更强的筛选性。
+
+在限流限速方面，Apache APISIX能够实现动态、精细化的限流限速。可以根据用户设置的配置随时更新状态，不需要重启，体现动态化。此外Apache APISIX还可以通过调节变量，实现业务上精细化的限流限速需求。
 
 
 
