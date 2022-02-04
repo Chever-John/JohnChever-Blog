@@ -85,3 +85,109 @@ Centos-port: 1980
 
 ## 进阶操作
 
+简单记一下逻辑，其实就是不断配置APISIX的路由规则，以下两个实际的配置代码
+
+### 配置代码一
+
+```shell
+curl http://127.0.0.1:9080/apisix/admin/routes/11 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' -X PUT -i -d '
+{
+    "methods": ["POST"],
+    "uri": "/graphql",
+    "vars": [
+        ["graphql_operation", "==", "query"],
+        ["graphql_name", "==", "getRepo"],
+        ["graphql_root_fields", "has", "owner"]
+    ],
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+            "127.0.0.1:1980": 1,
+	    	"127.0.0.1:1981": 1
+        }
+    }
+}'
+```
+
+这边配置了两个upstream服务器，权重都设置为1，一个等级，这里边2的权重大于1。
+
+### 配置代码二
+
+```shell
+curl http://127.0.0.1:9080/apisix/admin/routes/11 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' -X PUT -i -d '
+{
+    "methods": ["POST"],
+    "uri": "/graphql",
+    "vars": [
+        ["graphql_operation", "==", "query"],
+        ["graphql_name", "==", "getRepo111"],
+        ["graphql_root_fields", "has", "owner"]
+    ],
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+            "127.0.0.1:1980": 1
+        }
+    }
+}'
+```
+
+第二个upstream服务器配置 graphql_name为`getRepo222`
+
+```shell
+curl http://127.0.0.1:9080/apisix/admin/routes/11 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' -X PUT -i -d '
+{
+    "methods": ["POST"],
+    "uri": "/graphql",
+    "vars": [
+        ["graphql_operation", "==", "query"],
+        ["graphql_name", "==", "getRepo222"],
+        ["graphql_root_fields", "has", "owner"]
+    ],
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+	    	"127.0.0.1:1981": 1
+        }
+    }
+}'
+```
+
+然后我们可以根据不同的graphql query来进行不同的匹配，即泽轩大佬说的
+
+> 泽轩：Apache APISIX 还可以针对不同的 graphql_operation 进行不同的权限校验、针对不同的 graphql_name 转发到不同的 upstream。
+
+开始 query
+
+```shell
+curl -i -X POST http://127.0.0.1:9080/graphql -d '
+query getRepo111 {
+    owner {
+        name
+    }
+    repo {
+        created
+    }
+}'
+```
+
+上面的query 转发到了1980 端口的 graphql server上
+
+```shell
+curl -i -X POST http://127.0.0.1:9080/graphql -d '
+query getRepo222 {
+    owner {
+        name
+    }
+    repo {
+        created
+    }
+}'
+```
+
+上面的 query 转发到了 1981 端口的 graphql server上
+
+就是这样，先简单做一下，明天再写详细一点。
+
+
+
