@@ -1,3 +1,9 @@
+---
+slug: 基础命令_graphql在APISIX中的应用
+title: 基础命令_graphql在APISIX中的应用
+authors: CheverJohn
+tags: [APISIX, GraphQL]
+---
 # 基础命令_graphql在APISIX中的应用
 
 ## 基础命令
