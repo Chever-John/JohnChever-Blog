@@ -5,7 +5,7 @@ authors: CheverJohn
 tags: [APISIX, GraphQL]
 ---
 # 基础命令_graphql在APISIX中的应用
-
+> 2022年2月6日，水一天
 ## 基础命令
 
 ### 路由规则配置
