@@ -1,6 +1,6 @@
 ---
 slug: 树莓派andUbuntu20.04.3_LTS
-title: 树莓派andUbuntu20.04.3_LTS
+title: 树莓派andUbuntu20.04.3 LTS
 authors: CheverJohn
 tags: [ProblemSolved, Ubuntu, RaspberryPi]
 ---
