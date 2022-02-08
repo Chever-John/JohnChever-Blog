@@ -6,6 +6,10 @@ tags: [APISIX, GraphQL]
 ---
 # 基础命令_graphql在APISIX中的应用
 > 2022年2月6日，水一天
+>
+> 本篇博客主要记录了我在使用 GraphQL 和 Apache APISIX 搭配过程中遇到的很多问题。纯属个人实践，有不对的地方还望指出。
+>
+> 本文章仅代表个人观点，内容均系个人随手记录，切勿较真，毕竟就是个人博客，随时感想罢了，如果想看正式文章，可以看我的 docs 内容（虽然我也没做）。求大佬别较真哈，欢迎意见交流！
 ## 基础命令
 
 ### 路由规则配置
@@ -90,6 +94,10 @@ Centos-port: 1980
 ```
 
 ## 进阶操作
+
+### 感谢大佬时刻
+
+这边感谢一下我泽轩大佬，谢谢他给我提出的宝贵意见。非常感谢！
 
 ### 体现 roundrobin 均衡策略
 
@@ -367,3 +375,38 @@ John Chever's 1981 port is working......
 
 这样配置好，就可以根据不同的 `graphql_name` 来匹配不同的上游 upstream 啦。
 
+### 根据 graphql_operation 进行不同的权限校验
+
+首先配置好上游对象实例
+
+```shell
+curl http://192.168.1.200:9080/apisix/admin/routes/11 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' -X PUT -d '
+{
+    "methods": ["POST"],
+    "uri": "/hello",
+    "vars": [
+        ["graphql_operation", "==", "mutation"],
+        ["graphql_name", "==", "repo"]
+    ],
+    "upstream": {
+        "nodes": {
+            "192.168.1.200:1982": 1
+        },
+        "type": "roundrobin"
+    }
+}'
+```
+
+然后发送请求以验证配置：
+
+```shell
+curl -i -X POST http://127.0.0.1:9080/hello -d '
+mutation repo($ep: Episode!, $review: ReviewInput!) {
+  createReview(episode: $ep, review: $review) {
+    stars
+    commentary
+  }
+}'
+```
+
+自此实现了 Apache APISIX 针对不同的 graphql_operation 进行不同的权限校验、针对不同的 graphql_name 转发到不同的 upstream。
