@@ -232,14 +232,14 @@ curl http://127.0.0.1:9080/apisix/admin/upstreams/1 -H 'X-API-KEY: edd1c9f034335
 curl http://127.0.0.1:9080/apisix/admin/routes/1 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' -X PUT -i -d '
 {
     "methods": ["POST"],
-    "uri": "/graphql111",
+    "uri": "/graphql",
     "vars": [
         ["graphql_operation", "==", "query"],
         ["graphql_name", "==", "getRepo111"],
         ["graphql_root_fields", "has", "owner"]
     ],    
     "upstream_id": "1"
-}'    
+}' 
 ```
 
 这里边我稍微解释一下，其中 `curl http://127.0.0.1:9080/apisix/admin/routes/1` 之后最后的 `1`，我认为就是 `"upstream_id": "1"`。因为从源码中解析 curl 请求的那个函数来看，就应该是这样的，如果有错误，可以来找我哈。
@@ -247,7 +247,7 @@ curl http://127.0.0.1:9080/apisix/admin/routes/1 -H 'X-API-KEY: edd1c9f034335f13
 然后进行最后的正式请求：
 
 ```shell
-curl -i -X POST http://127.0.0.1:9080/graphql111 -d '
+curl -i -X POST http://127.0.0.1:9080/graphql -d '
 query getRepo111 {
     owner {
         name
@@ -310,7 +310,7 @@ curl http://127.0.0.1:9080/apisix/admin/upstreams/2 -H 'X-API-KEY: edd1c9f034335
 curl http://127.0.0.1:9080/apisix/admin/routes/2 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' -X PUT -i -d '
 {
     "methods": ["POST"],
-    "uri": "/graphql222",
+    "uri": "/graphql",
     "vars": [
         ["graphql_operation", "==", "query"],
         ["graphql_name", "==", "getRepo222"],
@@ -323,7 +323,7 @@ curl http://127.0.0.1:9080/apisix/admin/routes/2 -H 'X-API-KEY: edd1c9f034335f13
 然后进行最后的正式请求：
 
 ```shell
-curl -i -X POST http://127.0.0.1:9080/graphql222 -d '
+curl -i -X POST http://127.0.0.1:9080/graphql -d '
 query getRepo222 {
     owner {
         name
