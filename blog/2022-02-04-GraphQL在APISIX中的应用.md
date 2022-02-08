@@ -5,11 +5,8 @@ authors: CheverJohn
 tags: [APISIX, GraphQL]
 ---
 # 基础命令_graphql在APISIX中的应用
-> 2022年2月6日，水一天
+> 本篇博客主要记录了我在使用 GraphQL 和 Apache APISIX 搭配过程中遇到的很多问题。纯属个人产出，有不对的地方还望指出。
 >
-> 本篇博客主要记录了我在使用 GraphQL 和 Apache APISIX 搭配过程中遇到的很多问题。纯属个人实践，有不对的地方还望指出。
->
-> 本文章仅代表个人观点，内容均系个人随手记录，切勿较真，毕竟就是个人博客，随时感想罢了，如果想看正式文章，可以看我的 docs 内容（虽然我也没做）。求大佬别较真哈，欢迎意见交流！
 
 ## 基础命令
 
@@ -408,6 +405,35 @@ mutation repo($ep: Episode!, $review: ReviewInput!) {
     commentary
   }
 }'
+```
+
+返回响应：
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Date: Tue, 08 Feb 2022 22:05:51 GMT
+Server: APISIX/2.10.3
+
+---Headers
+content-type:application/x-www-form-urlencoded
+host:127.0.0.1:9080
+x-real-ip:127.0.0.1
+x-forwarded-for:127.0.0.1
+x-forwarded-proto:http
+x-forwarded-host:127.0.0.1
+x-forwarded-port:9080
+content-length:133
+user-agent:curl/7.29.0
+accept:*/*
+---Args
+---URI
+/hello
+---Service Node
+Centos-port: 1982
+John Chever's 1982 port is working......
 ```
 
 自此实现了 Apache APISIX 针对不同的 graphql_operation 进行不同的权限校验、针对不同的 graphql_name 转发到不同的 upstream。
