@@ -152,11 +152,75 @@ Connection: keep-alive
 
 success
 
+#### issue 提出者认为
+
+一个正常的 graphql 请求应该是这样的：
+
+```shell
+curl 'https://api.mocki.io/v2/c4d7a195/graphql' \
+  -H 'authority: api.mocki.io' \
+  -H 'accept: */*' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://api.mocki.io' \
+  --data-raw '{"operationName":"getUser","variables":{},"query":"query getUser {\n  user(id: \"4dc70521-22bb-4396-b37a-4a927c66d43b\") {\n    id\n    email\n    name\n  }\n}\n"}' \
+  --compressed
+```
+
+会返回
+
+```shell
+{
+  "data": {
+    "user": {
+      "id": "Hello World",
+      "email": "Hello World",
+      "name": "Hello World"
+    }
+  }
+}
+```
+
+
+
+#### 而且
+
+A standard GraphQL POST request should use the application/json content type, and include a JSON-encoded body of the following form:
+
+```
+{
+  "query": "...",
+  "operationName": "...",
+  "variables": { "myVariable": "someValue", ... }
+}
+```
+
+see official graphql document, https://graphql.org/learn/serving-over-http/#post-request
+
+and `--data` will perform request with `POST` method ,see `curl` document
+
+A standard GraphQL POST request should use the application/json content type, and include a JSON-encoded body of the following form:
+
+```
+{
+  "query": "...",
+  "operationName": "...",
+  "variables": { "myVariable": "someValue", ... }
+}
+```
+
+see official graphql document, https://graphql.org/learn/serving-over-http/#post-request
+
+and `--data` will perform request with `POST` method ,see `curl` document
+
+
+
 ### 可参考的 GraphQL 官方文档
 
 https://graphql.org/learn/serving-over-http/#post-request
 
 https://graphql.org/learn/serving-over-http/#post-request
+
+
 
 ## 评估工作情况
 
