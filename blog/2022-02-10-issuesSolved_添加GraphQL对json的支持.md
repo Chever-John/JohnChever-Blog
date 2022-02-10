@@ -1,6 +1,6 @@
 ---
-slug: 解决一个 issue 的过程
-title: 解决一个 issue 的过程
+slug: 解决一个issue的过程
+title: 解决一个issue的过程
 authors: CheverJohn
 tags: [ProblemSolved, GraphQL, issueSolved, APISIX]
 ---
