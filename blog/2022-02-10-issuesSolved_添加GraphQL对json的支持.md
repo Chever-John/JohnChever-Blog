@@ -1,4 +1,11 @@
-解决一个 issues 的过程
+---
+slug: 解决一个 issue 的过程
+title: 解决一个 issue 的过程
+authors: CheverJohn
+tags: [ProblemSolved, GraphQL, issueSolved, APISIX]
+---
+
+# 解决一个 issues 的过程
 
 > 本篇博客，详细讲述一个 issues 的解决过程，享受解决问题的快乐吧:)
 
@@ -212,9 +219,75 @@ see official graphql document, https://graphql.org/learn/serving-over-http/#post
 
 and `--data` will perform request with `POST` method ,see `curl` document
 
+#### 对于 curl 工具的使用
+
+```
+$ curl --help
+Usage: curl [options...] <url>
+ -d, --data <data>   **HTTP POST data**
+...
+```
+
+use `-v` to print verbose log
+
+```
+curl -v 'https://api.mocki.io/v2/c4d7a195/graphql' \
+  -H 'authority: api.mocki.io' \
+  -H 'accept: */*' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://api.mocki.io' \
+  --data-raw '{"operationName":"getUser","variables":{},"query":"query getUser {\n  user(id: \"4dc70521-22bb-4396-b37a-4a927c66d43b\") {\n    id\n    email\n    name\n  }\n}\n"}' \
+  --compressed
+```
+
+> issue 提出者原话：
+>
+> it will print something like this `> POST /v2/c4d7a195/graphql HTTP/2`, thought i'm not use `-X POST`
+>
+> sorry, I'm try to discuss about how APISIX deal with graphql request. it seems that the mock GraphQL data of APISIX is not a standard GraphQL request.
+
+#### 得出结论: mock GraphQL data of APISIX is not a standard GraphQL request.
+
+### 评估需求
+
+看过这个 issue 之后，思考了 APISIX 中的 GraphQL 到底是什么。或许 APISIX 支持的是假的 GraphQL？思考明白之后才能动手做。
+
+> 之前应该是只做了这个：If the "application/graphql" Content-Type header is present, treat the HTTP POST body contents as the GraphQL query string.
+
+```shell
+curl -v -H "Content-Type: application/graphql" -d "{ hello }"  "localhost:3000/graphql" 
+```
+
+需要指定 content-type 了
 
 
-### 可参考的 GraphQL 官方文档
+
+所以我对于这个 issue 的结论就是：需要 fix 三部分
+
+1. 解决 POST JSON的问题，让 APISIX 支持 JSON 格式的 POST；
+2. 支持 GET 。
+
+但对于目前的 GraphQL 在 APISIX 中的应用来讲，是可以通过 `"application/graphql" Content-Type` 的形式绕过的。参考[文档](https://graphql.org/learn/serving-over-http/#post-request)中的这句：
+
+> If the "application/graphql" Content-Type header is present, treat the HTTP POST body contents as the GraphQL query string.
+
+
+
+#### 重点：点睛之笔
+
+https://graphql.org/learn/serving-over-http/
+参考官方的文档，实际上 APISIX 现在处理的场景是 
+
+> If the "application/graphql" Content-Type header is present, treat the HTTP POST body contents as the GraphQL query string.
+
+APISIX 暂时只能够实现 GraphQL query 的功能。
+
+我们需要 `json` 格式的功能
+最好还要加上 “GET” 的功能。
+
+
+
+## 可参考的 GraphQL 官方文档
 
 https://graphql.org/learn/serving-over-http/#post-request
 
