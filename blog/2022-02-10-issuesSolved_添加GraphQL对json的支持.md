@@ -611,3 +611,26 @@ return _M
 
 1. 找到需要更改的代码范围，将 [graphql-lua](https://github.com/bjornbytes/graphql-lua/tree/master/graphql) 中的 `parse.lua` 代码理解清楚。
 2. 将 `ctx.lua` 代码理解清楚。
+3. 确定思路
+
+## 开始工作
+
+### 我的第一版计划
+
+1. 向上游提交 json 格式的 PR
+   1. 上游 PR 通过后，再进行 APISIX 的 issue 修复。
+2. APISIX 中只要对上游的函数进行使用，并输出报错结果就行。
+
+
+
+### 大佬思路
+
+来自APISIX PMC [zexuan](https://github.com/spacewander)
+
+大概意思就是，把 json 在APISIX 里解码成 query 字段，然后再将其query 喂给 graphql-lua。
+
+我们并不需要支持 operationName、variable这些功能。
+
+这个思路贼简单，那我为啥想不到呢？
+
+轻微反思，是因为有点“眼高手低”处理实际问题的能力待加强。慢慢学习吧
