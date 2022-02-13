@@ -14,7 +14,7 @@ tags: [ProblemSolved, APISIX, Centos7, Linux]
 
 事实上，为什么我们很多人在接触一个新的项目时候会遇到各种各样的坑呢？
 
-根据这一次的经历来看，其中的主要原因还是在于**本地部署环境的不完备**。本次踩坑经历，其实问题就是在git啦、gcc啦等之类看似很常见的东西，实际并没有配置好，然后咱们的项目文档书写者呢，默认了你已经完全配置好这些基本的东西了。唉，但是谁能想到大多数人都会是在虚拟机、wsl、docker上配置，看来docker其实更具有实用性，可以当做乐高组件一样，什么时候想用哪几个，直接拼凑起来，就是一个了，不扯远了。
+根据这一次的经历来看，其中的主要原因还是在于**本地部署环境的不完备**。本次踩坑经历，其实问题就是在 git 啦、gcc 啦等之类看似很常见的东西，实际并没有配置好，然后咱们的项目文档书写者呢，默认了你已经完全配置好这些基本的东西了。唉，但是谁能想到大多数人都会是在虚拟机、wsl、docker上配置，看来 docker 其实更具有实用性，可以当做乐高组件一样，什么时候想用哪几个，直接拼凑起来，就是一个了，不扯远了。
 
 这边先说清楚成功部署APISIX项目，系统需要具备的最基本的东西：
 
@@ -35,11 +35,44 @@ tags: [ProblemSolved, APISIX, Centos7, Linux]
 
 ## 第一部分：安装
 
-### 安装APISIX运行环境依赖
+### 安装 APISIX 运行环境依赖
 
 基本方法内容来自于[官方文档](https://apisix.apache.org/zh/docs/apisix/2.10/how-to-build#:~:text=%E5%BB%BA%20Apache%20APISIX-,%E6%AD%A5%E9%AA%A41%EF%BC%9A%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96,-%23);
 
+### 安装 etcd
 
+命令：
+
+```shell
+wget https://github.com/etcd-io/etcd/releases/download/v3.4.13/etcd-v3.4.13-linux-amd64.tar.gz
+tar -xvf etcd-v3.4.13-linux-amd64.tar.gz && \
+    cd etcd-v3.4.13-linux-amd64 && \
+    sudo cp -a etcd etcdctl /usr/bin/
+```
+
+### 安装 OpenResty
+
+命令：
+
+```shell
+sudo yum install yum-utils
+sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
+
+# 安装 OpenResty 和 编译工具
+sudo yum install -y openresty curl git gcc openresty-openssl111-devel unzip pcre pcre-devel
+
+# 安装 LuaRocks
+curl https://raw.githubusercontent.com/apache/apisix/master/utils/linux-install-luarocks.sh -sL | bash -
+
+```
+
+
+
+然后才能正常启动 etcd
+
+```shell
+nohup etcd &
+```
 
 
 
