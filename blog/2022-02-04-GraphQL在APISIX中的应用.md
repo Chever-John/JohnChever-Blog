@@ -57,7 +57,7 @@ Access-Control-Max-Age: 3600
 **# basic request**
 
 ```shell
-curl -X POST http://127.0.0.1:9080/graphql -d '
+curl -H 'content-type: application/graphql' -X POST http://127.0.0.1:9080/graphql -d '
 query getRepo {
     owner {
         name
@@ -180,7 +180,7 @@ curl http://127.0.0.1:9080/apisix/admin/routes/11 -H 'X-API-KEY: edd1c9f034335f1
 开始 query
 
 ```shell
-curl -i -X POST http://127.0.0.1:9080/graphql -d '
+curl -H 'content-type: application/graphql' -i -X POST http://127.0.0.1:9080/graphql -d '
 query getRepo111 {
     owner {
         name
@@ -194,7 +194,7 @@ query getRepo111 {
 上面的query 转发到了1980 端口的 graphql server上
 
 ```shell
-curl -i -X POST http://127.0.0.1:9080/graphql -d '
+curl -H 'content-type: application/graphql' -i -X POST http://127.0.0.1:9080/graphql -d '
 query getRepo222 {
     owner {
         name
@@ -253,7 +253,7 @@ curl http://127.0.0.1:9080/apisix/admin/routes/1 -H 'X-API-KEY: edd1c9f034335f13
 然后进行最后的正式请求：
 
 ```shell
-curl -i -X POST http://127.0.0.1:9080/graphql -d '
+curl -H 'content-type: application/graphql' -i -X POST http://127.0.0.1:9080/graphql -d '
 query getRepo111 {
     owner {
         name
@@ -329,7 +329,7 @@ curl http://127.0.0.1:9080/apisix/admin/routes/2 -H 'X-API-KEY: edd1c9f034335f13
 然后进行最后的正式请求：
 
 ```shell
-curl -i -X POST http://127.0.0.1:9080/graphql -d '
+curl -H 'content-type: application/graphql' -i -X POST http://127.0.0.1:9080/graphql -d '
 query getRepo222 {
     owner {
         name
