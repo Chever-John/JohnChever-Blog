@@ -1,3 +1,10 @@
+---
+slug: 跑通测试框架且解决多进程问题
+title: 跑通测试框架且解决多进程问题
+authors: CheverJohn
+tags: [ProblemSolved, APISIX, NGINX, Test, OpenResty, Perl]
+---
+
 # 记录一次找错
 
 我的问题描述
