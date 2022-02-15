@@ -607,12 +607,6 @@ return _M
 
 地址为：[请求生命周期](https://cloudnative.to/blog/apisix-source-code-reading/#:~:text=Use%20ngx.ctx%20wherever%20you%20can.%20ngx.var%20is)。
 
-## 2022年2月11日的工作
-
-1. 找到需要更改的代码范围，将 [graphql-lua](https://github.com/bjornbytes/graphql-lua/tree/master/graphql) 中的 `parse.lua` 代码理解清楚。
-2. 将 `ctx.lua` 代码理解清楚。
-3. 确定思路
-
 ## 开始工作
 
 ### 我的第一版计划
@@ -637,3 +631,62 @@ return _M
 
 
 有个调试问题没解决好，离谱，得加速了。
+
+
+
+
+
+### 2022年2月11日的工作
+
+1. 找到需要更改的代码范围，将 [graphql-lua](https://github.com/bjornbytes/graphql-lua/tree/master/graphql) 中的 `parse.lua` 代码理解清楚。
+2. 将 `ctx.lua` 代码理解清楚。
+3. 确定思路
+
+
+
+### 2022年2月14日的工作
+
+1. 完成测试框架的搭建
+
+
+
+### 2022年2月15日的工作
+
+1. 成功跑通测试框架
+2. 开始正式开发，将问题锁定在具体的部分
+
+问题解决需要在这里添加代码
+![需要添加代码的地方](/img/2022-02-10-issuesSolved_添加GraphQL对json的支持/代码需要放在的位置.png)
+
+很明显，当我从终端扫入一个 `body` ，它的内容可能是这样的。
+
+```shell
+2022/02/15 15:31:09 [info] 338683#338683: *77846 [lua] ctx.lua:59: parse_graphql(): booody: query getRepo {owner {name}repo {created}}, client: 127.0.0.1, server: _, request: "POST /graphql HTTP/1.1", host: "127.0.0.1:9080"
+```
+
+这对照了这样的请求：
+
+```shell
+curl -H 'content-type: application/graphql' -X POST http://127.0.0.1:9080/graphql -d 'query getRepo {owner {name}repo {created}}'
+```
+
+也可以是这样的：
+
+```shell
+2022/02/15 15:32:55 [info] 338682#338682: *84824 [lua] ctx.lua:59: parse_graphql(): booody: {"query":"query getUser{getUser{name age}}","variables":null}, client: 127.0.0.1, server: _, request: "POST /graphql HTTP/1.1", host: "127.0.0.1:9080"
+```
+
+这对照了这样的请求：
+
+```shell
+curl 'http://127.0.0.1:9080/graphql' \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*' \
+  --data-raw '{"query":"query getUser{getUser{name age}}","variables":null}' \
+  --compressed
+```
+
+当然，第一个请求就是目前 APISIX 能够处理的 `query` 格式的 graphql 语句，第二个请求是目前 APISIX 不能够处理的 `json` 格式的 graphql 语句。
+
+而我需要做的事情，就是把 `json` 格式转换为 `query` 格式，既然确认了，就开始做，寻找 lua 转换格式的方法。
+
