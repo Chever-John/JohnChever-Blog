@@ -119,3 +119,25 @@ sudo passwd root
 
 然后也没遇到啥问题了。就这样，解散！
 
+## 如果需要重新配置网络
+
+当然你可以选择根据上面推荐的很不错的文档教程，一步一步去做。
+
+ubuntu 的网络配置文件地址在 `/etc/netplan/` 中。
+
+进入到配置目录中，你可以看到有一个叫做 `50-cloud-init.yaml` 的文件名：
+```shell
+root@ubuntu:/etc/netplan# ls -la
+total 16
+drwxr-xr-x  2 root root 4096 Mar  1 05:02 .
+drwxr-xr-x 98 root root 4096 Feb 24 06:08 ..
+-rw-r--r--  1 root root  822 Mar  1 05:02 50-cloud-init.yaml
+```
+
+查看其中，将网络根据自己的需求进行配置，你想 dhcp 还是 static 都可以。
+
+最后使用下面命令让配置生效：
+```shell
+sudo netplan --debug apply
+```
+然后网络就配好了，over！
