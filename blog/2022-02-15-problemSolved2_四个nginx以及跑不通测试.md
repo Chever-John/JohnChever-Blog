@@ -77,6 +77,10 @@ ps -ef | grep nginx
 
 然后还有一个点需要注意一下，`make deps` 和 `LUAROCKS_SERVER=https://luarocks.cn make deps` 可以混着用，over。
 
-放上遇到问题的图：![我又遇到问题啦呜呜呜](http://cdn.mr8god.cn/img/error4runtest.png)
+放上遇到问题的图：
 
-放上解决问题之后的图片：![解决问题就是爽啊！](http://cdn.mr8god.cn/img/solved4runtest.png)
+![我又遇到问题啦呜呜呜](http://cdn.mr8god.cn/img/error4runtest.png)
+
+放上解决问题之后的图片：
+
+![解决问题就是爽啊！](http://cdn.mr8god.cn/img/solved4runtest.png)
