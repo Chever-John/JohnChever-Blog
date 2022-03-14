@@ -73,3 +73,7 @@ nohup etcd &
 之后，便能够成功运行，如图
 
 ![](http://cdn.mr8god.cn/img/20220315030850.png)
+
+
+虚拟机经历了很多
+![虚拟机经历了很多](http://cdn.mr8god.cn/img/20220315031328.png)
