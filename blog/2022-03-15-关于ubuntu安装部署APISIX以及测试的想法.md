@@ -59,4 +59,17 @@ export PATH=/usr/local/openresty/nginx/sbin:$PATH
 ```shell
 git submodule update --init --recursive
 ```
+请注意，当我仅运行
+```shell
+apisix start
+```
 
+and
+
+```shell
+nohup etcd &
+```
+
+之后，便能够成功运行，如图
+
+![](http://cdn.mr8god.cn/img/20220315030850.png)
