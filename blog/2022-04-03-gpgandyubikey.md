@@ -2,7 +2,7 @@
 slug: Test GPG
 title: YubiKey 为 Git commit 签名
 authors: CheverJohn
-tags: [APISIX, go-runner, Test]
+tags: [GPG, YubiKey, git]
 ---
 
 
