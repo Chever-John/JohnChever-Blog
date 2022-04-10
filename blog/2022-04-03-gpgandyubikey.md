@@ -264,6 +264,9 @@ git config --global user.signingKey B4E1273375AC2412
 git config --global commit.gpgsign true
 ```
 
+> 不过根据我的日常使用经验，每次隔一段时间，比如我隔一晚上，然后起来准备提交的时候。是需要先执行这个命令，然后输入 yubikey 的基本密码，
+接下来所有的 commit 才是被 gpg `verified` 的状态！！！
+
 为 macOS 添加制定的 GPG 执行程序
 
 ```shell
