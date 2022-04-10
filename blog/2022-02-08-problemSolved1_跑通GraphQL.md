@@ -23,3 +23,11 @@ static/img/2022-02-08-记录一次排错/image-20220208223242984.png
 ![image-20220208230709047](/img/2022-02-08-记录一次排错/image-20220208230709047.png)
 
 etcdctl get / --prefix --keys-only
+
+这边也记录一下 etcd 的官方关闭命令，其实也可以参考其他进程类关闭的方法：
+
+```shell
+kill `pgrep etcd`
+```
+
+来自于 etcd [官方链接](https://etcd.io/docs/v2.3/admin_guide/)
