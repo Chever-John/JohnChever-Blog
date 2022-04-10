@@ -17,11 +17,11 @@ docker rm $(docker ps -a -q)
 ```
 
 ```shell
-docker rmi $(docker ps -a)
+docker rmi $(docker images -a)
 ```
 
 ```shell
-docker rmi $(docker ps -a) -f
+docker rmi $(docker images -a) -f
 ```
 
 ### 删除 exited 的容器
