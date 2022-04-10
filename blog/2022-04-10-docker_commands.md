@@ -20,6 +20,10 @@ docker rm $(docker ps -a -q)
 docker rmi $(docker ps -a)
 ```
 
+```shell
+docker rmi $(docker ps -a) -f
+```
+
 ### 删除 exited 的容器
 
 谨慎啊！有些容器我还是需要的哈！
