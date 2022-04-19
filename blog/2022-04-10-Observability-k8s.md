@@ -1,6 +1,6 @@
 ---
-slug: K8s
-title: K8s
+slug: Observability-Prometheus
+title: Observability: Prometheus
 authors: CheverJohn
 tags: [k8s, Observability]
 ---
