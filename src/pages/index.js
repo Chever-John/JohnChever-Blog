@@ -59,10 +59,7 @@ export default function Home() {
         <animated.div style = {animatedTexts[1]}>
           <Typography variant="body1">
             <Translate>
-              A University graduate who has a great passion for Tech.
-              While keeping updated with the most recent
-              technologies, I always seek to improve and grow as a
-              professional full-stack web developer as well as a person.
+              A University graduate and an open-source enthusiast (newbie level). My guideline is to change the world with code!
             </Translate>{" "}
           </Typography>
         </animated.div>
