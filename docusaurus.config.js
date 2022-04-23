@@ -39,10 +39,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      gtag: {
-        trackingID: 'G-S9LZ6M643L',
-        anonymizeIP: true,
-      },
       navbar: {
         title: "CheverJohn's Website",
         logo: {
