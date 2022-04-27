@@ -68,6 +68,8 @@ kubectl get service --namespace ingress-apisix
 
 ## Enable web-socket backend service
 
+You can refer to this [link](https://apisix.apache.org/zh/docs/ingress-controller/practices/proxy-the-httpbin-service) for more information.
+
 ```sh
 // pull image jmalloc/echo-server
 kubectl run websocket-server --image jmalloc/echo-server --port 8080
