@@ -408,6 +408,68 @@ Defaulted container "apisix" out of: apisix, wait-etcd (init)
 hello
 ```
 
+## 总结
 
+这篇文档的得来，是很不容易的。我学习了很多知识，dockerfile 打包镜像。helm chart 自定义。很痛苦，但是也很快乐。也知道了要注意打包的可执行
+文件是静态链接还是应该动态链接
 
+[Containerize Your Go Developer Environment – Part 1](https://www.docker.com/blog/containerize-your-go-developer-environment-part-1/): 看了但是没啥用
 
+[kind load 打包镜像](https://kind.sigs.k8s.io/docs/user/quick-start/#:~:text=This%20allows%20a%20workflow%20like%3A)
+
+[Dockerfile 中的 COPY 与 ADD 命令](https://www.cnblogs.com/sparkdev/p/9573248.html): 这个确实很有用啊！
+
+[打开 httpbin 后端服务](https://apisix.apache.org/zh/docs/ingress-controller/practices/proxy-the-httpbin-service-with-ingress): 这个起到一点用处
+
+[搭配上面一起使用](https://apisix.apache.org/zh/docs/ingress-controller/practices/proxy-the-httpbin-service/): 与上面的方法搭配使用，效果更佳
+
+[APISIX Ingress issues: How to use apisix-python-plugin-runner](https://github.com/apache/apisix-ingress-controller/issues/921): 很有用哦！
+
+[Helm 修改后该如何部署](https://cloud.tencent.com/developer/article/1604291#:~:text=%E6%9E%9C%E7%84%B6%E5%A2%9E%E5%8A%A0%E4%BA%86%EF%BC%9A-,%E7%AC%AC%E4%BA%8C%E7%A7%8D%E4%BF%AE%E6%94%B9%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%94%B9helm%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6,-%E5%A6%82%E6%9E%9C%E6%9C%8D%E5%8A%A1%E8%BF%98): 这个也很有用！
+
+[深入理解 Dockerfile 上下文](https://yeasy.gitbook.io/docker_practice/image/build#jing-xiang-gou-jian-shang-xia-wen-context)
+
+[理解 Dockerfile 构建上下文](https://blog.csdn.net/qianghaohao/article/details/87554255)
+
+[理解 FROM ...AS (Stackoverflow)](https://stackoverflow.com/questions/56645546/from-as-in-dockerfile-not-working-as-i-expect#:~:text=The%20FROM...,new%20stage%20of%20the%20build.)
+
+[Docker 官方文档有不错的解释](https://docs.docker.com/language/golang/build-images/#create-a-dockerfile-for-the-application)
+
+### 判错命令
+
+此外，有一些帮助我判断状况的命令也非常需要记住，非常感谢哈：
+
+查询日志
+
+```bash
+kubectl  logs apisix-5b9788797c-f8lrv -n ingress-apisix
+```
+
+查看pod 状态
+
+```bash
+kubectl describe pod  apisix-7cdf9cbf6f-gh5bw -n apisix
+```
+
+如果是 alpine 的容器，安装命令是
+
+```bash
+apk add file
+```
+
+进入到容器里，运行 file 命令，查看可执行文件的基本信息
+
+```bash
+file some_execuable
+```
+### 其他命令
+
+```bash
+helm uninstall apisix ./apisix.tgz
+```
+
+Upgrade 安装
+
+```bash
+helm upgrade --install apisix ./apisix.tgz --set gateway.type=NodePort --set ingress-controller.enabled=true --namespace ingress-apisix --set ingress-controller.config.apisix.serviceNamespace=ingress-apisix
+```
