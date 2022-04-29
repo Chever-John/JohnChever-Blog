@@ -1,5 +1,5 @@
 ---
-slug: HowToRunGoPluginRunnerInAPISIXIngress
+slug: HowToRunGoPluginRunnerInAPISIXIngressEn
 title: How to run go plugin runner in APISIX Ingress
 authors: CheverJohn
 tags: [k8s, apisix, Ingress, docker]
