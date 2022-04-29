@@ -19,11 +19,11 @@ tags: [k8s, apisix, Ingress, docker]
 
 ```bash
 go-plugin-runner: 0.3
-APISIX Ingress: 	1.4.0
+APISIX Ingress:   1.4.0
 
-kind: 						kind v0.12.0 go1.17.8 linux/amd64
-kubectl version:	Client Version: v1.23.5/Server Version: v1.23.4
-golang:						go1.18 linux/amd64
+kind: 			  kind v0.12.0 go1.17.8 linux/amd64
+kubectl:          Client Version: v1.23.5/Server Version: v1.23.4
+golang:			  go1.18 linux/amd64
 ```
 
 ## 正文
