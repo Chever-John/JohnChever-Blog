@@ -7,6 +7,8 @@ tags: [k8s, apisix, Ingress, docker]
 
 # 如何在 APISIX Ingress 中使用 go-plugin-runner
 
+[toc]
+
 ## 背景描述
 
 当我在社区闲逛的时候，发现有一位用户对“如何在 APISIX Ingress 的环境下使用多语言插件”这个问题存在困惑。而我正好同时是 go-plugin-runner 的使用者，以及对 APISIX Ingress 项目有一点了解，于是便诞生了这篇文档。
