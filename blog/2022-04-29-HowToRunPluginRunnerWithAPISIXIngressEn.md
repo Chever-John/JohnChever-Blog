@@ -4,33 +4,30 @@ title: How to run go plugin runner in APISIX Ingress
 authors: CheverJohn
 tags: [k8s, apisix, Ingress, docker]
 ---
+# How to use go-plugin-runner in APISIX Ingress
 
-# 如何在 APISIX Ingress 中使用 go-plugin-runner
+## Background Description
 
-[toc]
+While wandering around the community, I found a user confused about "how to use multilingual plugins in APISIX Ingress environment". I happen to be a user of go-plugin-runner and have a little knowledge of the APISIX Ingress project, so this document was born.
 
-## 背景描述
+## Proposal Description
 
-当我在社区闲逛的时候，发现有一位用户对“如何在 APISIX Ingress 的环境下使用多语言插件”这个问题存在困惑。而我正好同时是 go-plugin-runner 的使用者，以及对 APISIX Ingress 项目有一点了解，于是便诞生了这篇文档。
-
-## 方案描述
-
-本文基于 0.3 版本的 go-plugin-runner 插件和 1.4.0 版本的 APISIX Ingress，详细讲述了从构建集群到构建镜像，再到自定义helm chart 包以及最后部署资源的全部过程。可以保证的是，根据这篇文档，可以完整的得出最后的结果。
+Based on version 0.3 of the go-plugin-runner plugin and version 1.4.0 of APISIX Ingress, this article goes through building the cluster, building the image, customizing the helm chart package, and finally, deploying the resources. It is guaranteed that the final result can be derived in full based on this documentation.
 
 ```bash
 go-plugin-runner: 0.3
-APISIX Ingress:   1.4.0
+APISIX Ingress: 1.4.0
 
-kind: 			  kind v0.12.0 go1.17.8 linux/amd64
-kubectl:          Client Version: v1.23.5/Server Version: v1.23.4
-golang:			  go1.18 linux/amd64
+kind: kind v0.12.0 go1.17.8 linux/amd64
+kubectl version: Client Version: v1.23.5/Server Version: v1.23.4
+golang: go1.18 linux/amd64
 ```
 
-## 正文
+## Begin
 
-### 构建集群环境
+### Build a cluster environment
 
-首先选择 kind 构建本地集群环境。命令如下：
+Select `kind` to build a local cluster environment. The command is as follows:
 
 ```bash
 cat <<EOF | kind create cluster --config=-
@@ -54,22 +51,22 @@ nodes:
 EOF
 ```
 
-### 打包构建 go-plugin-runner 的可执行文件
+### Build the go-plugin-runner executable
 
-如果你插件写完了的话，就可以开始编译可执行文件以搭配 APISIX 运行了。
+If you have finished writing the plugin, you can start compiling the executable to run with APISIX.
 
-本文推荐两种打包构建方案：
+This article recommends two packaging build options.
 
-1. 将打包流程放进 Dockerfile，在之后构建 docker 镜像的时候顺道将编译过程完成。
-1. 也可以跟本文档，先打包可执行文件，再将打包好的可执行文件复制到镜像中去。
+1. put the packaging process into the Dockerfile and finish the compilation process when you build the docker image later.
+2. You can also follow the scheme used in this document, building the executable first and then copying the packaged executable to the image.
 
-如何选择方案，我认为这取决于你本地硬件的考量。此处选择第二种方案的原因是想要依靠本地强大的硬件提高打包速度，加快流程。
+How you choose the option should depend on your local hardware considerations. The reason for selecting the second option here is that I want to rely on my powerful local hardware to increase the building speed and speed up the process.
 
-#### 进入到 go-plugin-runner 目录
+### Go to the go-plugin-runner directory
 
-选择一个的文件夹地址 `/home/chever/api7/cloud_native/tasks/plugin-runner`，并将我们的 `apisix-go-plugin-runner` 项目置于此文件夹下。
+Choose a folder address `/home/chever/api7/cloud_native/tasks/plugin-runner` and place our `apisix-go-plugin-runner` project in this folder.
 
-放置成功后，文件树如下所示：
+After successful placement, the file tree is shown below:
 
 ```bash
 chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ tree -L 1
@@ -79,7 +76,7 @@ chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ tree -L 1
 1 directory, 0 files
 ```
 
-然后你需要进入到 `apisix-go-plugin-runner/cmd/go-runner/plugins` 目录，并在该目录下编写你所需要的插件。本文章将使用默认插件 `say` 作演示。
+Then you need to go to the `apisix-go-plugin-runner/cmd/go-runner/plugins` directory and write the plugins you need in that directory. This article will use the default plugin `say` for demonstration purposes.
 
 ```bash
 chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner/apisix-go-plugin-runner$ tree cmd
@@ -99,17 +96,17 @@ cmd
 2 directories, 10 files
 ```
 
-写完插件后，开始正式编译可执行文件，此处需要注意，你应该编写静态的可执行文件，非动态。
+After writing the plugins, start compiling the executable formally, and note here that you should build static executables, not dynamic ones.
 
-打包编译命令如下：
+The package compile command is as follows.
 
 ```bash
 CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"' .
 ```
 
-这样便成功打包了一个静态编译的 `go-runner` 可执行文件。
+This successfully packages a statically compiled `go-runner` executable.
 
-在  `apisix-go-plugin-runner/cmd/go-runner/` 目录下，可以看到当前文件树是这样的
+In the `apisix-go-plugin-runner/cmd/go-runner/` directory, you can see that the current file tree looks like this:
 
 ```bash
 chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner/apisix-go-plugin-runner/cmd/go-runner$ tree -L 1
@@ -123,15 +120,15 @@ chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner/apisix-go-plugin-
 1 directory, 4 files
 ```
 
-请记住 `apisix-go-plugin-runner/cmd/go-runner/go-runner` 这个路径，我们将在之后用到它。
+Please remember the path `apisix-go-plugin-runner/cmd/go-runner/go-runner`, we will use it later.
 
-### 构建镜像
+### Build Docker Image
 
-此处构建镜像是为了后面使用 `helm` 安装 APISIX 做准备。
+The image is built here in preparation for installing APISIX later using `helm`.
 
-#### 编写 Dockerfile 文件
+#### Write Dockerfile
 
-返回到路径 `/home/chever/api7/cloud_native/tasks/plugin-runner`，在该目录下建立一个 Dockerfile 文件，此处给出一个示范。
+Return to the path `/home/chever/api7/cloud_native/tasks/plugin-runner` and create a Dockerfile in that directory, a demonstration of which is given here.
 
 ```dockerfile
 ARG ENABLE_PROXY=false
@@ -203,47 +200,47 @@ ARG ENABLE_PROXY
 
 ```
 
-将目录 `/home/chever/api7/cloud_native/tasks/plugin-runner` 下的 `/apisix-go-plugin-runner` 文件全部打包进 Docker 镜像。并记录下可执行文件的位置 `apisix-go-plugin-runner/cmd/go-runner/go-runner`，联系到 Dockerfile 中的 `/usr/local/apisix-go-plugin-runner`，得出最终的可执行文件在 Docker 镜像中的位置如下：
+Package all the `/apisix-go-plugin-runner` files in the `/home/chever/api7/cloud_native/tasks/plugin-runner` directory into a Docker image. Note down the location of the executable `apisix-go-plugin-runner/cmd/go-runner/go-runner` and the location of the `/usr/local/apisix-go-plugin-runner` directory in the Dockerfile above to get the final location of the executable in the Docker image is located as follows.
 
 ```bash
 /usr/local/apisix-go-plugin-runner/cmd/go-runner/go-runner
 ```
 
-请记录下这个地址。我们将在接下来的配置中使用到它。
+Please make a note of this address. We will use it in the rest of the configuration.
 
-#### 开始构建镜像
+#### Begin to build Docker Image
 
-开始根据 Dockerfile 构建 Docker 镜像。命令执行目录于 `/home/chever/api7/cloud_native/tasks/plugin-runner`。命令如下：
+Start building a Docker image based on the Dockerfile. The command is executed in the `/home/chever/api7/cloud_native/tasks/plugin-runner` directory. The command is as follows:
 
 ```bash
 docker build -t apisix/forrunner:0.1 .
 ```
 
-命令解释：构建一个名字叫作 `apisix/forrunner` 的镜像，并将其标记为 0.1 版本。
+Command Explanation: Build an image with the name `apisix/forrunner` and mark it as version 0.1.
 
-#### 加载镜像到集群环境中
+#### Load the image to the cluster environment
 
 ```bash
 kind  load docker-image apisix/forrunner:0.1 
 ```
 
-将镜像加载进 kind 集群环境中去，以便让之后 helm 安装的时候能拉取到这个自定义的镜像进行安装。
+Load the image into the kind cluster environment to pull the custom local image for installation during the helm installation.
 
-### helm 安装部署 Apisix Ingress
+### Install APISIX Ingress
 
-#### 修改官方包
+#### Customize the helm chart
 
-本小节主要是修改 helm 官方包中的 `values.yaml` 文件，以使其可以安装本地打包的镜像以及正常运行 `go-plugin-runner` 可执行文件。
+This section focuses on modifying the `values.yaml` file in the official helm package so that it can install locally packaged images and run the `go-plugin-runner` executable properly.
 
-##### 拉取官方包
+##### Fetch Official helm chart
 
-首先拉取最新的 apisix helm chart 包，命令如下：
+First, fetch the latest apisix helm chart package with the following command:
 
 ```bash
 helm fetch apisix/apisix
 ```
 
-文件树如下：
+The file tree is as follows:
 
 ```bash
 chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ tree -L 1
@@ -254,15 +251,15 @@ chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ tree -L 1
 1 directory, 1 file
 ```
 
-##### 解压官方包
+##### Unzip
 
-解压 `apisix-0.9.1.tgz` 文件，准备改写配置。解压命令如下：
+Unzip the `apisix-0.9.1.tgz` file and prepare to rewrite the configuration. The unzip command is as follows.
 
 ```bash
 tar zxvf apisix-0.9.1.tgz
 ```
 
-得到文件树如下：
+The file tree is as follows:
 
 ```bash
 chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ tree -L 1
@@ -274,9 +271,9 @@ chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ tree -L 1
 2 directories, 1 file
 ```
 
-##### 修改 `values.yaml` 文件
+##### Change `values.yaml`
 
-进入`apisix` 文件夹，修改 `values.yaml` 文件。两处修改如下：
+Go to the `apisix` folder and modify the `values.yaml` file. The two changes are as follows:
 
 ```yaml
 image:
@@ -286,7 +283,7 @@ image:
   tag: 0.1
 ```
 
-第一处修改将helm 安装的镜像设置为本地自己打包的镜像。
+The first change sets the image for the helm installation to be a locally packaged image of your own.
 
 ```yaml
 extPlugin:
@@ -294,17 +291,17 @@ extPlugin:
   cmd: ["/usr/local/apisix-go-plugin-runner/cmd/go-runner/go-runner", "run"]
 ```
 
-第二处命令设置好运行容器后，go-runner 在容器中的位置。
+The second change sets the position of go-runner in the container after running the container.
 
-##### 压缩修改后的包
+##### Compress the modified helm chart
 
-配置好后，压缩 `apisix` 文件。压缩命令如下：
+Once configured, compress the `apisix` file. The compression command is as follows:
 
 ```bash
 tar zcvf apisix.tgz apisix/
 ```
 
-得到压缩文件，此时文件树如下：
+The compressed file is obtained, at which point the file tree is as follows:
 
 ```bash
 chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ tree -L 1
@@ -317,45 +314,43 @@ chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ tree -L 1
 2 directories, 2 files
 ```
 
-#### 执行 helm 安装命令
+#### Execute the helm install command
 
-##### 创建 namespace
+##### Create namespace
 
-在正式安装之前，先创建 namespaces，命令如下
+Before installation, create namespaces with the following command:
 
 ```bash
 kubectl create ns ingress-apisix
 ```
 
-正式使用 helm 安装 APISIX
-
-然后使用 helm 安装 APISIX，命令如下：
+Then install APISIX using helm with the following command:
 
 ```bash
 helm install apisix ./apisix.tgz --set gateway.type=NodePort --set ingress-controller.enabled=true --namespace ingress-apisix --set ingress-controller.config.apisix.serviceNamespace=ingress-apisix
 ```
 
-### 创建 httpbin 服务以及 ApisixRoute 资源
+### Create httpbin service and ApisixRoute resources
 
-创建 httpbin 后端资源，以配合部署的 ApisixRoute 资源运行测试功能是否正常生效。
+Create an httpbin backend resource to run with the deployed ApisixRoute resource to test that the functionality is working correctly.
 
-#### 创建 httpbin 服务
+#### Create httpbin service
 
-创建一个 httpbin 服务，命令如下：
+Create an httpbin service with the following command:
 
 ```bash
 kubectl run httpbin --image kennethreitz/httpbin --port 80
 ```
 
-将端口暴露出去，命令如下：
+Expose the port with the following command:
 
 ```bash
 kubectl expose pod httpbin --port 80
 ```
 
-#### 创建 ApisixRoute 资源
+#### Create ApisixRoute Resource
 
-创建 `go-plugin-runner-route.yaml` 文件以开启 ApisixRoute 资源，配置文件如下：
+Create the `go-plugin-runner-route.yaml` file to enable the ApisixRoute resource, with the following configuration file:
 
 ```yaml
 apiVersion: apisix.apache.org/v2beta3
@@ -382,27 +377,27 @@ spec:
           value: "{\"body\": \"hello\"}"
 ```
 
-创建资源命令如下：
+The create resource command is as follows:
 
 ```bash
 kubectl apply -f go-plugin-runner-route.yaml
 ```
 
-### 测试
+### Test
 
-测试 Golang 编写的插件是否正常运行，命令如下：
+The command is as follows to test if the plugin written in Golang is working correctly:
 
 ```bash
 kubectl exec -it -n ${namespace of Apache APISIX} ${Pod name of Apache APISIX} -- curl http://127.0.0.1:9080/get -H 'Host: local.httpbin.org'
 ```
 
-此处我根据 `kubectl get pods --all-namespaces` 命令得出这里的 `${namespace of Apache APISIX} ` 和 `${Pod name of Apache APISIX}` 参数分别为`ingress-apisix` 和 `apisix-55d476c64-s5lzw`，执行命令如下：
+Here I derived from the `kubectl get pods --all-namespaces` command that the `${namespace of Apache APISIX}` and `${Pod name of Apache APISIX}` parameters here are `ingress-apisix` and `apisix- 55d476c64-s5lzw`, execute the command as follows:
 
 ```bash
 kubectl exec -it -n ingress-apisix apisix-55d476c64-s5lzw -- curl http://127.0.0.1:9080/get -H 'Host: local.httpbin.org'
 ```
 
-得到的正常响应为：
+The expected response obtained is:
 
 ```bash
 chever@cloud-native-01:~/api7/cloud_native/tasks/plugin-runner$ kubectl exec -it -n ingress-apisix apisix-55d476c64-s5lzw -- curl http://127.0.0.1:9080/get -H 'Host: local.httpbin.org'
