@@ -1,6 +1,6 @@
 ---
-slug: HowToRunGoPluginRunnerInAPISIXIngress
-title: How to run go plugin runner in APISIX Ingress
+slug: 如何在APISIX_Ingress中使用go-plugin-runner
+title: 如何在 APISIX Ingress 中使用 go-plugin-runner
 authors: CheverJohn
 tags: [k8s, apisix, Ingress, docker]
 ---
