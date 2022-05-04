@@ -94,7 +94,7 @@ const config = {
             ]
           }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} CheverJohn, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} CheverJohn, Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
