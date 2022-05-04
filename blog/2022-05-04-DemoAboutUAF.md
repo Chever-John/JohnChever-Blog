@@ -1,5 +1,9 @@
-
-
+---
+slug: DemosAboutUAF
+title: Thinking about UAF in Code
+authors: CheverJohn
+tags: [Safety, Thinking]
+---
 
 # UAF
 
