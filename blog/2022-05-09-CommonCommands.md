@@ -11,3 +11,5 @@ tags: [Vim, Terminal, Thinking]
 # 将全文的word1替换为word2
 :1,$s/word1/word2/g
 ```
+
+From this [link](https://github.com/LeetCode-OpenSource/vscode-leetcode/issues/799#issuecomment-1120825207).
