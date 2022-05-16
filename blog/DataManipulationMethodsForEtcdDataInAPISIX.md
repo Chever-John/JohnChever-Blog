@@ -1,11 +1,12 @@
 ---
-slug: 排错纪录 & 学习纠错
-title: 排错纪录 & 学习纠错
+slug: DataManipulationMethodsForEtcdDataInAPISIX
+title: Data manipulation methods for etcd data in apisix
 authors: CheverJohn
 tags: [APISIX, GraphQL, ProblemSolved]
 ---
 
 >这次的排错过程，主要是由我的 mentor 主导的，这边也给出了我导师的 github 账号，有兴趣的可以去交流一下哦。
+
 ```shell
 tail -f logs/error.log
 ```
