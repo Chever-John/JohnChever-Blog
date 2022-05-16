@@ -22,9 +22,25 @@ static/img/2022-02-08-记录一次排错/image-20220208223242984.png
 
 ![image-20220208230709047](/img/2022-02-08-记录一次排错/image-20220208230709047.png)
 
-etcdctl get / --prefix --keys-only
+1. 得到 etcd 中所有的路由信息
 
-这边也记录一下 etcd 的官方关闭命令，其实也可以参考其他进程类关闭的方法：
+```bash
+etcdctl get / --prefix --keys-only
+```
+
+2. tail 日志信息
+
+```bash
+tail -f logs/error.log
+```
+
+3. 删除 etcd 中所有的 APISIX 路由数据
+
+```bash
+etcdctl del /apisix/routes --prefix
+```
+
+4. 这边也记录一下 etcd 的官方关闭命令，其实也可以参考其他进程类关闭的方法：
 
 ```shell
 kill `pgrep etcd`
