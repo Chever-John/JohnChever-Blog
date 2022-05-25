@@ -6,6 +6,7 @@
 
 命令如下：
 
+<!--truncate-->
 ```sh
 cat <<EOF | kind create cluster --config=-
 kind: Cluster

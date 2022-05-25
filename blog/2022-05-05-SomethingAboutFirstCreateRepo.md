@@ -5,6 +5,7 @@ authors: CheverJohn
 tags: [Github, Thinking]
 ---
 
+<!--truncate-->
 **…or create a new repository on the command line**
 
 ```markdown

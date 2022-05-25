@@ -5,7 +5,6 @@ authors: CheverJohn
 tags: [Docker, Command]
 ---
 
-
 ## 删除一些东西
 
 ### 自己常用的
@@ -16,6 +15,7 @@ tags: [Docker, Command]
 docker rm $(docker ps -a -q)
 ```
 
+<!--truncate-->
 ```shell
 docker rmi $(docker images -a)
 ```

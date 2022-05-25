@@ -16,7 +16,7 @@ helm version: version.BuildInfo{Version:"v3.8.1", GitCommit:"5cb9af4b1b271d11d7a
 ingress version: 
 ```
 
-
+<!--truncate-->
 I will describe my successful recurrence process as follows.
 
 

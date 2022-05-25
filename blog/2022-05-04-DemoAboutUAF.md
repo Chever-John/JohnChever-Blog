@@ -13,6 +13,7 @@ This is my first write an article about safety while it does an essential positi
 
 UAF means "use after free". In binary security, there is a very much used vulnerability called **UAF** (use-after-free), which is a vulnerability caused by the continued use of a piece of memory after it has been freed.
 
+<!--truncate-->
 Formal code:
 
 ```c

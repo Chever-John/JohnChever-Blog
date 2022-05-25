@@ -9,8 +9,7 @@ Observability (monitoring functionality) has always played an important role in 
 
 Prometheus is a leading open-source project focused on metrics and alerting that has changed the way the world does monitoring and observability. And Apache APISIX Ingress Controller has enhanced its support for Prometheus Metrics in recent releases, adding a new feature for use in conjunction with the `public-api` plugin. This article will introduce how to configure `public-api` to protect **Prometheus** to collect Apache APISIX Ingress Controller's Metrics data.
 
-
-
+<!--truncate-->
 ## Initial Knowledge about `public-api`
 
 When users develop custom plugins in Apache APISIX, they can define some APIs (hereinafter referred to as public API) for the plugins. In practical application scenarios, the provided interface is for internal calls, rather than being open on the public network for anyone to call.

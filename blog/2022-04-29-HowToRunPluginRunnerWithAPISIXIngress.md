@@ -13,6 +13,7 @@ tags: [k8s, apisix, Ingress, docker]
 
 当我在社区闲逛的时候，发现有一位用户对“如何在 APISIX Ingress 的环境下使用多语言插件”这个问题存在困惑。而我正好同时是 go-plugin-runner 的使用者，以及对 APISIX Ingress 项目有一点了解，于是便诞生了这篇文档。
 
+<!--truncate-->
 ## 方案描述
 
 本文基于 0.3 版本的 go-plugin-runner 插件和 1.4.0 版本的 APISIX Ingress，详细讲述了从构建集群到构建镜像，再到自定义helm chart 包以及最后部署资源的全部过程。可以保证的是，根据这篇文档，可以完整的得出最后的结果。

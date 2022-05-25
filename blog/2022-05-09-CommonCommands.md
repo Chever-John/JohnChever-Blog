@@ -12,4 +12,5 @@ tags: [Vim, Terminal, Thinking]
 :1,$s/word1/word2/g
 ```
 
+<!--truncate-->
 From this [link](https://github.com/LeetCode-OpenSource/vscode-leetcode/issues/799#issuecomment-1120825207).

@@ -5,13 +5,12 @@ authors: CheverJohn
 tags: [k8s, apisix, Ingress, docker]
 ---
 
+<!--truncate-->
 ```
 kind create cluster
 
 kubectl create ns apisix
 ```
-
-
 
 ## `helm install` with values.yaml
 

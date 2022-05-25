@@ -10,6 +10,7 @@ tags: [k8s, apisix, Ingress, docker]
 
 While wandering around the community, I found a user confused about "how to use multilingual plugins in APISIX Ingress environment". I happen to be a user of go-plugin-runner and have a little knowledge of the APISIX Ingress project, so this document was born.
 
+<!--truncate-->
 ## Proposal Description
 
 Based on version 0.3 of the go-plugin-runner plugin and version 1.4.0 of APISIX Ingress, this article goes through building the cluster, building the image, customizing the helm chart package, and finally, deploying the resources. It is guaranteed that the final result can be derived in full based on this documentation.

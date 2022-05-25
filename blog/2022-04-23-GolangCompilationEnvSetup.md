@@ -15,6 +15,7 @@ In `windows`, the default value of `GOROOT` is `C:/go`, while in macOS or Linux,
 
 In addition, `GOROOT/bin` contains the toolchain that Go provides for us, so you should configure `GOROOT/bin` to the environment variable PATH so that we can use the Go toolchain globally.
 
+<!--truncate-->
 ### Linux setup GOROOT demo
 
 ```bash
