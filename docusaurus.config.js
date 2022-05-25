@@ -19,6 +19,12 @@ const config = {
   presets: [
     [
       '@docusaurus/preset-classic',
+      {
+        gtag: {
+          trackingID: 'G-JSXD1Z95YL',
+          anonymizeIP: true,
+        },
+      },
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         blog: {
