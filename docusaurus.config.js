@@ -25,21 +25,6 @@ const config = {
           anonymizeIP: true,
         },
       },
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        blog: {
-          blogSidebarTitle: 'All Blogs',
-          blogSidebarCount: 'ALL',
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
-
-        },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
     ],
   ],
   themeConfig:
