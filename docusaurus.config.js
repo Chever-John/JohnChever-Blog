@@ -16,6 +16,19 @@ const config = {
   organizationName: 'https://github.com/chever-john/', // Usually your GitHub org/user name.
   projectName: 'Blog', // Usually your repo name.
 
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+      },
+      zh: {
+        label: '简体中文',
+      }
+    }
+  },
+
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -56,6 +69,10 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          }
         ],
       },
       footer: {
