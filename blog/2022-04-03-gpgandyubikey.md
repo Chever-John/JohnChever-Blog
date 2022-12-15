@@ -105,6 +105,39 @@ Add to your ~/.gnupg/scdaemon.conf file:
 
 #### 生成密钥
 
+##### 生成之前先更改密钥的加解密算法
+
+Changing to better defaults
+
+We want to make sure we’re using the strongest key types that are available for GPG. For our purposes, we need to use RSA keys for all key types. Set the key size to the maximum supported by the YubiKey (4096 bits).
+
+```sh
+gpg/card> key-attr
+Changing card key attribute for: Signature key
+Please select what kind of key you want:
+   (1) RSA
+   (2) ECC
+Your selection? 1
+What keysize do you want? (2048) 4096
+The card will now be re-configured to generate a key of 4096 bits
+Changing card key attribute for: Encryption key
+Please select what kind of key you want:
+   (1) RSA
+   (2) ECC
+Your selection? 1
+What keysize do you want? (2048) 4096
+The card will now be re-configured to generate a key of 4096 bits
+Changing card key attribute for: Authentication key
+Please select what kind of key you want:
+   (1) RSA
+   (2) ECC
+Your selection? 1
+What keysize do you want? (2048) 4096
+The card will now be re-configured to generate a key of 4096 bits
+```
+
+##### 开始生成密钥
+
 命令如下
 
 ```shell
