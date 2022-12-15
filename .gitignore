@@ -23,3 +23,5 @@ yarn-error.log*
 /.idea/workspace.xml
 /.idea/Johns_website.iml
 /.idea/inspectionProfiles/Project_Default.xml
+
+.idea/.name

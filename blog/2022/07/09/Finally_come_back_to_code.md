@@ -1,5 +1,5 @@
 ---
-slug: Happy~
+slug: Happy
 title: Happy!
 authors: CheverJohn
 tags: [Thinking]
