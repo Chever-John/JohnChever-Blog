@@ -1,4 +1,9 @@
-# 2022 年总结
+---
+slug: 2022 年终总结
+title: 2022 年终总结
+authors: CheverJohn
+tags: [Thinking]
+---
 
 ## 最开始
 
