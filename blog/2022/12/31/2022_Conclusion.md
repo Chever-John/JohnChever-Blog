@@ -1,5 +1,9 @@
-# 2022 年总结
-
+---
+slug: 2022 年终总结
+title: 2022 年终总结
+authors: CheverJohn
+tags: [Thinking]
+---
 ## 最开始
 
 2022 年最初，是跟浩浩、坤坤三个人在南京开始的。我依稀记得那段时间是考研结束之后，拿到了 Apache APISIX 公司的实习 Offer之后的一段时光。
