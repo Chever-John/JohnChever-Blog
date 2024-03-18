@@ -114,6 +114,10 @@ const config = {
               {
                 "label": "北松山(itwaix)",
                 "href": "https://www.itwaix.com/"
+              },
+              {
+                label: 'gq’s blog',
+                href: 'https://zgq.ink/',
               }
             ]
           }
